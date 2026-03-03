@@ -6,7 +6,7 @@
     <meta name="description" content="دورة إكسل احترافية مع المدرب باسل غانم - من الصفر للاحتراف | Excel Training Course with Basel Ghanem">
     <title>دورة إكسل الشاملة | باسل غانم - X Academy</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -17,11 +17,16 @@
                         primary: '#099999',
                         primary_light: '#0bc4c4',
                         primary_dark: '#066666',
-                        dark: '#0f172a'
+                        dark: '#0B1120',
+                        premium_gold: '#D4AF37'
                     },
                     fontFamily: {
                         ar: ['Cairo', 'sans-serif'],
                         en: ['Poppins', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'premium': '0 25px 50px -12px rgba(9, 153, 153, 0.25)',
+                        'glow': '0 0 20px rgba(9, 153, 153, 0.5)',
                     }
                 }
             }
@@ -34,7 +39,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
-        /* Language Toggle Logic */
         html[lang="ar"] .lang-en { display: none !important; }
         html[lang="en"] .lang-ar { display: none !important; }
         
@@ -42,96 +46,156 @@
         html[lang="en"] body { font-family: 'Poppins', sans-serif; }
 
         body {
-            background-color: #f8fafc;
-            color: #334155;
+            background-color: #FAFAFA;
+            color: #1E293B;
             overflow-x: hidden;
+            cursor: none;
         }
 
         ::selection { background-color: #099999; color: white; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #099999; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F1F5F9; }
+        ::-webkit-scrollbar-thumb { background: #099999; border-radius: 10px; }
 
-        /* Glassmorphism */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #099999;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease-out, background-color 0.2s;
+            transform: translate(-50%, -50%);
+        }
+        
+        .custom-cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: rgba(9, 153, 153, 0.1);
+        }
+
         .glass-nav {
             background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(9, 153, 153, 0.1);
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border: 1px solid rgba(9, 153, 153, 0.1);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(9, 153, 153, 0.1);
-            border-color: #099999;
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent);
+            transform: skewX(-20deg);
+            transition: 0.5s;
         }
 
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+        .glass-card:hover::before {
+            left: 150%;
         }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(9, 153, 153, 0.15);
+            border-color: rgba(9, 153, 153, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+        .animate-float { animation: float 7s ease-in-out infinite; }
 
         .gradient-text {
-            background: linear-gradient(135deg, #099999 0%, #0bc4c4 100%);
+            background: linear-gradient(135deg, #099999 0%, #066666 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        
+        .premium-gradient-bg {
+            background: linear-gradient(135deg, #0B1120 0%, #152336 100%);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(9, 153, 153, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .valid-input { border-color: #10B981 !important; background-color: #ECFDF5 !important; }
+        
+        .parallax-bg {
+            transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
     </style>
 </head>
-<body x-data="{ mobileMenuOpen: false, currentLang: 'ar' }">
+<body x-data="{ 
+    mobileMenuOpen: false, 
+    mouseX: 0, 
+    mouseY: 0,
+    isHovering: false,
+    updateCursor(e) {
+        this.mouseX = e.clientX;
+        this.mouseY = e.clientY;
+    }
+}" @mousemove="updateCursor($event)" class="relative">
+
+    <div class="custom-cursor hidden md:block" :class="{ 'hover': isHovering }" :style="`left: ${mouseX}px; top: ${mouseY}px;`"></div>
 
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="bg-primary p-2.5 rounded-xl text-white shadow-lg">
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
+                    <div class="bg-gradient-to-br from-primary to-primary_dark p-2.5 rounded-xl text-white shadow-glow group-hover:scale-110 transition-transform">
                         <i data-lucide="bar-chart-2" class="w-6 h-6"></i>
                     </div>
-                    <span class="text-2xl font-black text-dark tracking-tight lang-ar">إكسل <span class="text-primary">أكاديمي</span></span>
-                    <span class="text-2xl font-black text-dark tracking-tight lang-en">Excel <span class="text-primary">Academy</span></span>
+                    <span class="text-2xl font-black text-dark tracking-tight lang-ar">إكسل <span class="gradient-text">أكاديمي</span></span>
+                    <span class="text-2xl font-black text-dark tracking-tight lang-en">Excel <span class="gradient-text">Academy</span></span>
                 </div>
 
                 <div class="hidden md:flex items-center gap-8 font-bold text-slate-600">
-                    <a href="#about" class="hover:text-primary transition-colors lang-ar">المدرب</a>
-                    <a href="#about" class="hover:text-primary transition-colors lang-en">Instructor</a>
+                    <a href="#about" class="hover:text-primary transition-colors lang-ar relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">المدرب</a>
+                    <a href="#about" class="hover:text-primary transition-colors lang-en relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Instructor</a>
                     
-                    <a href="#syllabus" class="hover:text-primary transition-colors lang-ar">المحاور</a>
-                    <a href="#syllabus" class="hover:text-primary transition-colors lang-en">Syllabus</a>
+                    <a href="#syllabus" class="hover:text-primary transition-colors lang-ar relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">المحاور</a>
+                    <a href="#syllabus" class="hover:text-primary transition-colors lang-en relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Syllabus</a>
                     
-                    <a href="#schedule" class="hover:text-primary transition-colors lang-ar">المواعيد</a>
-                    <a href="#schedule" class="hover:text-primary transition-colors lang-en">Schedule</a>
+                    <a href="#schedule" class="hover:text-primary transition-colors lang-ar relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">المواعيد</a>
+                    <a href="#schedule" class="hover:text-primary transition-colors lang-en relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">Schedule</a>
 
-                    <a href="#faq" class="hover:text-primary transition-colors lang-ar">الأسئلة الشائعة</a>
-                    <a href="#faq" class="hover:text-primary transition-colors lang-en">FAQ</a>
+                    <a href="#faq" class="hover:text-primary transition-colors lang-ar relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">الأسئلة</a>
+                    <a href="#faq" class="hover:text-primary transition-colors lang-en relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all">FAQ</a>
 
-                    <a href="#register" class="bg-dark text-white px-6 py-2 rounded-full hover:bg-primary transition-all shadow-lg lang-ar">سجل الآن</a>
-                    <a href="#register" class="bg-dark text-white px-6 py-2 rounded-full hover:bg-primary transition-all shadow-lg lang-en">Register Now</a>
+                    <a href="#register" @mouseenter="isHovering = true" @mouseleave="isHovering = false" class="bg-dark text-white px-8 py-2.5 rounded-full hover:bg-primary transition-all shadow-lg hover:shadow-glow lang-ar flex items-center gap-2">
+                        سجل الآن <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#register" @mouseenter="isHovering = true" @mouseleave="isHovering = false" class="bg-dark text-white px-8 py-2.5 rounded-full hover:bg-primary transition-all shadow-lg hover:shadow-glow lang-en flex items-center gap-2">
+                        Register Now <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
                     
-                    <button id="langToggle" class="flex items-center gap-2 text-primary font-bold hover:bg-primary/10 px-3 py-1 rounded-lg transition">
+                    <button id="langToggle" @mouseenter="isHovering = true" @mouseleave="isHovering = false" class="flex items-center gap-2 text-primary font-bold hover:bg-primary/10 px-3 py-1.5 rounded-lg transition border border-transparent hover:border-primary/20">
                         <i data-lucide="globe" class="w-5 h-5"></i>
                         <span class="lang-ar">EN</span>
                         <span class="lang-en">عربي</span>
                     </button>
                 </div>
 
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-2 text-slate-600 hover:text-primary">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-2 text-slate-600 hover:text-primary transition-colors">
                     <i data-lucide="menu" class="w-8 h-8" x-show="!mobileMenuOpen"></i>
                     <i data-lucide="x" class="w-8 h-8" x-show="mobileMenuOpen" x-cloak></i>
                 </button>
             </div>
         </div>
 
-        <div x-show="mobileMenuOpen" x-collapse class="md:hidden bg-white border-t border-slate-100 shadow-xl absolute w-full">
-            <div class="flex flex-col p-4 gap-4 font-bold text-lg text-center">
+        <div x-show="mobileMenuOpen" x-transition x-collapse class="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 shadow-2xl absolute w-full">
+            <div class="flex flex-col p-6 gap-5 font-bold text-lg text-center">
                 <a href="#about" @click="mobileMenuOpen = false" class="text-slate-600 hover:text-primary lang-ar">المدرب</a>
                 <a href="#about" @click="mobileMenuOpen = false" class="text-slate-600 hover:text-primary lang-en">Instructor</a>
                 
@@ -141,10 +205,10 @@
                 <a href="#schedule" @click="mobileMenuOpen = false" class="text-slate-600 hover:text-primary lang-ar">المواعيد</a>
                 <a href="#schedule" @click="mobileMenuOpen = false" class="text-slate-600 hover:text-primary lang-en">Schedule</a>
                 
-                <a href="#register" @click="mobileMenuOpen = false" class="bg-primary text-white py-3 rounded-xl lang-ar">سجل الآن</a>
-                <a href="#register" @click="mobileMenuOpen = false" class="bg-primary text-white py-3 rounded-xl lang-en">Register Now</a>
+                <a href="#register" @click="mobileMenuOpen = false" class="bg-gradient-to-r from-primary to-primary_dark text-white py-4 rounded-xl shadow-glow lang-ar">سجل الآن واضمن مقعدك</a>
+                <a href="#register" @click="mobileMenuOpen = false" class="bg-gradient-to-r from-primary to-primary_dark text-white py-4 rounded-xl shadow-glow lang-en">Secure Your Seat Now</a>
                 
-                <button id="langToggleMobile" class="text-primary border border-primary py-2 rounded-xl">
+                <button id="langToggleMobile" class="text-primary border-2 border-primary/20 hover:bg-primary/5 py-3 rounded-xl transition-colors">
                     <span class="lang-ar">Switch to English</span>
                     <span class="lang-en">التبديل للعربية</span>
                 </button>
@@ -152,115 +216,179 @@
         </div>
     </nav>
 
-    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:32px_32px] opacity-30"></div>
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50" x-data="{ scroll: 0 }" @scroll.window="scroll = window.pageYOffset">
+        <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:40px_40px] opacity-40"></div>
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary_light/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
         
-        <div class="max-w-7xl mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-            <div data-aos="fade-up">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-primary/20 shadow-sm mb-6">
-                    <span class="relative flex h-3 w-3">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+        <div class="max-w-7xl mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white border border-red-100 shadow-sm mb-8 transform hover:scale-105 transition-transform">
+                    <span class="relative flex h-3.5 w-3.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-red-600"></span>
                     </span>
-                    <span class="text-sm font-bold text-primary lang-ar">التسجيل متاح الآن - مقاعد محدودة</span>
-                    <span class="text-sm font-bold text-primary lang-en">Registration Open - Limited Seats</span>
+                    <span class="text-sm font-bold text-red-600 lang-ar">الفرصة الأخيرة - متبقي 3 مقاعد فقط</span>
+                    <span class="text-sm font-bold text-red-600 lang-en">Last Chance - Only 3 Seats Left</span>
                 </div>
                 
-                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight text-dark lang-ar">
-                    احترف الإكسل <br> <span class="gradient-text">من الصفر للقمة</span>
+                <h1 class="text-5xl md:text-7xl lg:text-[5rem] font-black mb-6 leading-tight text-dark lang-ar">
+                    المخطط الشامل <br> لاحتراف <span class="gradient-text relative inline-block">الإكسل
+                        <svg class="absolute w-full h-4 -bottom-1 left-0 text-primary/30" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 15 Q 50 0 100 15" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg>
+                    </span>
                 </h1>
-                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight text-dark lang-en">
-                    Master Excel <br> <span class="gradient-text">Zero to Hero</span>
+                <h1 class="text-5xl md:text-7xl lg:text-[5rem] font-black mb-6 leading-tight text-dark lang-en">
+                    The Ultimate <br> <span class="gradient-text relative inline-block">Excel Mastery
+                        <svg class="absolute w-full h-4 -bottom-1 left-0 text-primary/30" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 15 Q 50 0 100 15" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg>
+                    </span>
                 </h1>
                 
-                <p class="text-xl text-slate-500 mb-8 leading-relaxed lang-ar">
-                    انضم الآن لأقوى دورة تدريبية عملية بقيادة الخبير باسل غانم. تعلم المهارات التي يطلبها سوق العمل واحصل على 5 اعتمادات دولية.
+                <p class="text-xl md:text-2xl text-slate-600 mb-10 leading-relaxed font-medium lang-ar">
+                    انضم الآن لأقوى تجربة تدريبية عملية بقيادة الخبير <strong class="text-dark">باسل غانم</strong>. انتقل من الصفر إلى بناء لوحات قيادة احترافية واحصل على 5 اعتمادات دولية تضاعف فرصتك بسوق العمل.
                 </p>
-                <p class="text-xl text-slate-500 mb-8 leading-relaxed lang-en">
-                    Join the most practical training course led by expert Basel Ghanem. Learn market-demanded skills and earn 5 international accreditations.
+                <p class="text-xl md:text-2xl text-slate-600 mb-10 leading-relaxed font-medium lang-en">
+                    Join the most powerful practical training experience led by expert <strong class="text-dark">Basel Ghanem</strong>. Go from zero to building professional dashboards and earn 5 international accreditations to boost your career.
                 </p>
                 
-                <div class="flex flex-wrap items-center gap-6">
-                    <a href="#register" class="bg-primary text-white text-lg font-bold px-8 py-4 rounded-full shadow-lg shadow-primary/30 hover:-translate-y-1 transition duration-300 flex items-center gap-2">
-                        <i data-lucide="rocket" class="w-5 h-5"></i>
-                        <span class="lang-ar">احجز مقعدك الآن</span>
-                        <span class="lang-en">Book Your Seat</span>
-                    </a>
-                    <div class="text-3xl font-black text-dark flex items-center gap-2">
-                        70 <span class="text-lg text-slate-500 lang-ar">دينار أردني</span><span class="text-lg text-slate-500 lang-en">JOD</span>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div class="w-full sm:w-auto text-center">
+                        <a href="#register" @mouseenter="isHovering = true" @mouseleave="isHovering = false" class="w-full sm:w-auto bg-gradient-to-r from-primary to-primary_dark text-white text-xl font-black px-10 py-5 rounded-2xl shadow-premium btn-glow flex items-center justify-center gap-3">
+                            <i data-lucide="zap" class="w-6 h-6 fill-current text-yellow-300"></i>
+                            <span class="lang-ar">احجز مقعدك الآن</span>
+                            <span class="lang-en">Claim Your Spot Now</span>
+                        </a>
+                        <p class="mt-3 text-sm font-bold text-slate-500 flex items-center justify-center gap-1.5 lang-ar">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-primary"></i> ضمان استرداد كامل للرسوم
+                        </p>
+                        <p class="mt-3 text-sm font-bold text-slate-500 flex items-center justify-center gap-1.5 lang-en">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-primary"></i> 100% Money-Back Guarantee
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white px-6 py-4 rounded-2xl shadow-lg border border-slate-100 flex flex-col justify-center w-full sm:w-auto">
+                        <div class="flex items-center gap-3">
+                            <div class="text-slate-400 line-through text-lg font-bold lang-ar">300 دينار</div>
+                            <div class="text-slate-400 line-through text-lg font-bold lang-en">300 JOD</div>
+                            <div class="bg-green-100 text-green-700 text-xs font-black px-2 py-1 rounded-md lang-ar">توفير 76%</div>
+                            <div class="bg-green-100 text-green-700 text-xs font-black px-2 py-1 rounded-md lang-en">Save 76%</div>
+                        </div>
+                        <div class="text-4xl font-black text-dark flex items-baseline gap-1 mt-1">
+                            70 <span class="text-xl text-primary lang-ar">دينار أردني</span><span class="text-xl text-primary lang-en">JOD</span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="relative" data-aos="zoom-in" data-aos-delay="200">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary to-primary_light rounded-3xl rotate-6 opacity-20 animate-pulse"></div>
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Excel Dashboard" class="relative rounded-3xl shadow-2xl border-4 border-white animate-float">
+            <div class="relative w-full h-[500px] md:h-[600px] perspective-1000" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="200">
+                <div class="absolute inset-0 bg-gradient-to-tr from-primary to-primary_light rounded-[2.5rem] rotate-3 opacity-20 animate-pulse"></div>
                 
-                <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4 hidden md:flex">
-                    <div class="bg-green-100 p-3 rounded-full text-green-600">
-                        <i data-lucide="check-circle" class="w-8 h-8"></i>
+                <img :style="`transform: translate(${mouseX * -0.02}px, ${mouseY * -0.02}px) rotateY(${mouseX * 0.01}deg) rotateX(${mouseY * -0.01}deg)`" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Excel Dashboard" class="absolute inset-0 w-full h-full object-cover rounded-[2.5rem] shadow-2xl border-4 border-white parallax-bg z-10">
+                
+                <div class="absolute -bottom-8 -right-8 bg-white p-5 rounded-3xl shadow-2xl border border-slate-100 flex items-center gap-5 z-20 animate-float" style="animation-delay: 1s;">
+                    <div class="bg-gradient-to-br from-green-400 to-green-600 p-4 rounded-2xl text-white shadow-lg shadow-green-200">
+                        <i data-lucide="award" class="w-8 h-8"></i>
                     </div>
                     <div>
-                        <p class="font-black text-xl text-dark">5</p>
-                        <p class="text-sm text-slate-500 font-bold lang-ar">شهادات معتمدة</p>
-                        <p class="text-sm text-slate-500 font-bold lang-en">Accreditations</p>
+                        <p class="font-black text-3xl text-dark">5</p>
+                        <p class="text-sm text-slate-500 font-bold lang-ar">شهادات معتمدة دولياً</p>
+                        <p class="text-sm text-slate-500 font-bold lang-en">Global Accreditations</p>
+                    </div>
+                </div>
+
+                <div class="absolute -top-6 -left-6 bg-white p-4 rounded-2xl shadow-2xl border border-slate-100 flex items-center gap-4 z-20 animate-float hidden md:flex">
+                    <div class="flex -space-x-3 rtl:space-x-reverse">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=1" alt="User">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=2" alt="User">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=3" alt="User">
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-600">+2k</div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-dark lang-ar">متدربين تخرجوا</p>
+                        <p class="text-sm font-bold text-dark lang-en">Graduated Trainees</p>
+                        <div class="flex text-yellow-400 w-3 h-3 gap-1 mt-1">
+                            <i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="py-10 border-y border-slate-200 bg-white">
+    <section class="py-12 border-y border-slate-200 bg-white relative z-20">
         <div class="max-w-7xl mx-auto px-4">
-            <p class="text-center text-sm font-bold text-slate-400 mb-6 uppercase tracking-wider lang-ar">اعتمادات الدورة الرسمية</p>
-            <p class="text-center text-sm font-bold text-slate-400 mb-6 uppercase tracking-wider lang-en">Official Accreditations</p>
-            <div class="flex flex-wrap justify-center gap-4 md:gap-10">
-                <span class="px-4 py-2 bg-slate-50 rounded-lg font-bold text-slate-600 border border-slate-100 flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-primary"></i> LPCIS</span>
-                <span class="px-4 py-2 bg-slate-50 rounded-lg font-bold text-slate-600 border border-slate-100 flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-primary"></i> CPD</span>
-                <span class="px-4 py-2 bg-slate-50 rounded-lg font-bold text-slate-600 border border-slate-100 flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-primary"></i> ISO 9001:2015</span>
-                <span class="px-4 py-2 bg-slate-50 rounded-lg font-bold text-slate-600 border border-slate-100 flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-primary"></i> QCET-UK</span>
-                <span class="px-4 py-2 bg-slate-50 rounded-lg font-bold text-slate-600 border border-slate-100 flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-primary"></i> ETDD</span>
+            <p class="text-center text-sm font-black text-slate-400 mb-8 uppercase tracking-widest lang-ar">اعتمادات الدورة الرسمية التي ستعزز سيرتك الذاتية</p>
+            <p class="text-center text-sm font-black text-slate-400 mb-8 uppercase tracking-widest lang-en">Official Accreditations To Boost Your Resume</p>
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8">
+                <div class="group px-6 py-3 bg-slate-50 hover:bg-white rounded-xl font-bold text-slate-600 hover:text-primary border border-slate-100 hover:border-primary/30 flex items-center gap-3 transition-all cursor-default shadow-sm hover:shadow-md hover:-translate-y-1">
+                    <i data-lucide="shield" class="w-5 h-5 text-primary group-hover:scale-110 transition-transform"></i> LPCIS
+                </div>
+                <div class="group px-6 py-3 bg-slate-50 hover:bg-white rounded-xl font-bold text-slate-600 hover:text-primary border border-slate-100 hover:border-primary/30 flex items-center gap-3 transition-all cursor-default shadow-sm hover:shadow-md hover:-translate-y-1">
+                    <i data-lucide="shield" class="w-5 h-5 text-primary group-hover:scale-110 transition-transform"></i> CPD
+                </div>
+                <div class="group px-6 py-3 bg-slate-50 hover:bg-white rounded-xl font-bold text-slate-600 hover:text-primary border border-slate-100 hover:border-primary/30 flex items-center gap-3 transition-all cursor-default shadow-sm hover:shadow-md hover:-translate-y-1">
+                    <i data-lucide="shield" class="w-5 h-5 text-primary group-hover:scale-110 transition-transform"></i> ISO 9001:2015
+                </div>
+                <div class="group px-6 py-3 bg-slate-50 hover:bg-white rounded-xl font-bold text-slate-600 hover:text-primary border border-slate-100 hover:border-primary/30 flex items-center gap-3 transition-all cursor-default shadow-sm hover:shadow-md hover:-translate-y-1">
+                    <i data-lucide="shield" class="w-5 h-5 text-primary group-hover:scale-110 transition-transform"></i> QCET-UK
+                </div>
+                <div class="group px-6 py-3 bg-slate-50 hover:bg-white rounded-xl font-bold text-slate-600 hover:text-primary border border-slate-100 hover:border-primary/30 flex items-center gap-3 transition-all cursor-default shadow-sm hover:shadow-md hover:-translate-y-1">
+                    <i data-lucide="shield" class="w-5 h-5 text-primary group-hover:scale-110 transition-transform"></i> ETDD
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-20 bg-slate-50">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="glass-card bg-white rounded-[2.5rem] p-8 md:p-12 border-t-4 border-primary" data-aos="fade-up">
-                <div class="flex flex-col md:flex-row items-center gap-10">
-                    <div class="relative group shrink-0 w-48 h-48 md:w-64 md:h-64">
-                        <div class="absolute inset-0 bg-primary rounded-[2rem] rotate-6 group-hover:rotate-12 transition-transform duration-500 opacity-20"></div>
-                        <img src="https://voxoura.com/media/user_images/Basel_Ghanem.jpg" alt="Basel Ghanem" class="relative w-full h-full object-cover rounded-[2rem] shadow-xl border-4 border-white">
-                        <div class="absolute -bottom-4 -right-4 bg-dark text-white px-4 py-2 rounded-xl font-bold text-sm shadow-lg flex items-center gap-2">
-                            <i data-lucide="star" class="w-4 h-4 text-yellow-400"></i> Microsoft Expert
+    <section id="about" class="py-24 bg-slate-50 relative overflow-hidden">
+        <div class="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] -translate-y-1/2"></div>
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="glass-card bg-white rounded-[3rem] p-10 md:p-16 border-t-8 border-primary" data-aos="fade-up" data-aos-duration="1000">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="relative group shrink-0 w-56 h-56 md:w-80 md:h-80 mx-auto lg:mx-0">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary to-primary_dark rounded-[2.5rem] rotate-6 group-hover:rotate-12 transition-transform duration-700 opacity-20"></div>
+                        <div class="absolute inset-0 bg-gradient-to-bl from-primary_light to-primary rounded-[2.5rem] -rotate-3 group-hover:-rotate-6 transition-transform duration-700 opacity-20"></div>
+                        <img src="https://voxoura.com/media/user_images/Basel_Ghanem.jpg" alt="Basel Ghanem" class="relative w-full h-full object-cover rounded-[2.5rem] shadow-2xl border-4 border-white transition-transform duration-500 group-hover:scale-105 z-10">
+                        
+                        <div class="absolute -bottom-6 -right-6 bg-dark text-white px-5 py-3 rounded-2xl font-black text-sm shadow-xl flex items-center gap-3 z-20 animate-float">
+                            <i data-lucide="award" class="w-6 h-6 text-yellow-400"></i>
+                            <div>
+                                <span class="block text-xs font-medium text-slate-300">Certified</span>
+                                Microsoft Expert
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="text-center md:text-start flex-1">
-                        <h2 class="text-sm font-bold text-primary mb-2 tracking-wider uppercase lang-ar">عن المدرب</h2>
-                        <h2 class="text-sm font-bold text-primary mb-2 tracking-wider uppercase lang-en">About Instructor</h2>
+                    <div class="text-center lg:text-start flex-1">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full font-bold text-sm mb-6">
+                            <i data-lucide="user" class="w-4 h-4"></i>
+                            <span class="lang-ar">خبير التدريب وتحليل البيانات</span>
+                            <span class="lang-en">Data Analysis & Training Expert</span>
+                        </div>
                         
-                        <h3 class="text-3xl md:text-4xl font-black mb-4 text-dark lang-ar">باسل غانم</h3>
-                        <h3 class="text-3xl md:text-4xl font-black mb-4 text-dark lang-en">Basel Ghanem</h3>
+                        <h3 class="text-4xl md:text-5xl font-black mb-6 text-dark lang-ar">المهندس باسل غانم</h3>
+                        <h3 class="text-4xl md:text-5xl font-black mb-6 text-dark lang-en">Eng. Basel Ghanem</h3>
                         
-                        <p class="text-lg text-slate-600 mb-6 leading-relaxed lang-ar">
-                            محلل مبيعات أول وخبير استراتيجي في البيانات بخبرة تتجاوز الـ 15 عاماً. معتمد كخبير من مايكروسوفت (Microsoft Certified Expert). قمت بتدريب آلاف المحترفين على تحويل البيانات المعقدة إلى قرارات استراتيجية باستخدام الإكسل و Power BI. مؤسس منصة X Academy في عمّان، الأردن.
+                        <p class="text-xl text-slate-600 mb-8 leading-relaxed lang-ar font-medium">
+                            محلل مبيعات أول وخبير استراتيجي في البيانات بخبرة تتجاوز الـ <strong class="text-primary font-black">15 عاماً</strong>. معتمد كخبير من مايكروسوفت (Microsoft Certified Expert). قمت بتدريب آلاف المحترفين على تحويل البيانات المعقدة إلى قرارات استراتيجية حاسمة باستخدام الإكسل و Power BI. مؤسس منصة X Academy في عمّان، الأردن.
                         </p>
-                        <p class="text-lg text-slate-600 mb-6 leading-relaxed lang-en">
-                            Senior Sales Analyst and Data Strategist with over 15 years of experience. Microsoft Certified Expert. I have trained thousands of professionals to transform complex data into strategic decisions using Excel and Power BI. Founder of X Academy in Amman, Jordan.
+                        <p class="text-xl text-slate-600 mb-8 leading-relaxed lang-en font-medium">
+                            Senior Sales Analyst and Data Strategist with over <strong class="text-primary font-black">15 years</strong> of experience. Microsoft Certified Expert. I have trained thousands of professionals to transform complex data into critical strategic decisions using Excel and Power BI. Founder of X Academy in Amman, Jordan.
                         </p>
                         
-                        <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                            <div class="bg-slate-100 px-4 py-2 rounded-lg text-center">
-                                <span class="block font-black text-xl text-primary">+15</span>
-                                <span class="text-xs font-bold text-slate-500 lang-ar">سنوات خبرة</span>
-                                <span class="text-xs font-bold text-slate-500 lang-en">Years Exp.</span>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 transition-colors text-center">
+                                <span class="block font-black text-3xl text-primary mb-1">+15</span>
+                                <span class="text-sm font-bold text-slate-500 lang-ar">سنوات خبرة</span>
+                                <span class="text-sm font-bold text-slate-500 lang-en">Years Experience</span>
                             </div>
-                            <div class="bg-slate-100 px-4 py-2 rounded-lg text-center">
-                                <span class="block font-black text-xl text-primary">+2000</span>
-                                <span class="text-xs font-bold text-slate-500 lang-ar">متدرب</span>
-                                <span class="text-xs font-bold text-slate-500 lang-en">Trainees</span>
+                            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 transition-colors text-center">
+                                <span class="block font-black text-3xl text-primary mb-1">+2000</span>
+                                <span class="text-sm font-bold text-slate-500 lang-ar">متدرب ناجح</span>
+                                <span class="text-sm font-bold text-slate-500 lang-en">Successful Trainees</span>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 transition-colors text-center col-span-2 md:col-span-1">
+                                <span class="block font-black text-3xl text-primary mb-1">X</span>
+                                <span class="text-sm font-bold text-slate-500 lang-ar">مؤسس X Academy</span>
+                                <span class="text-sm font-bold text-slate-500 lang-en">Founder of X Academy</span>
                             </div>
                         </div>
                     </div>
@@ -269,117 +397,192 @@
         </div>
     </section>
 
-    <section id="syllabus" class="py-20 bg-white">
+    <section id="syllabus" class="py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-down">
-                <h2 class="text-3xl md:text-5xl font-black text-dark mb-4 lang-ar">محاور الدورة</h2>
-                <h2 class="text-3xl md:text-5xl font-black text-dark mb-4 lang-en">Course Syllabus</h2>
-                <p class="text-lg text-slate-500 lang-ar">خطتك الواضحة للوصول إلى الاحتراف</p>
-                <p class="text-lg text-slate-500 lang-en">Your clear roadmap to mastery</p>
+            <div class="text-center mb-20" data-aos="fade-down">
+                <span class="text-primary font-black tracking-wider text-sm mb-3 block uppercase lang-ar">المنهجية العلمية</span>
+                <span class="text-primary font-black tracking-wider text-sm mb-3 block uppercase lang-en">Scientific Methodology</span>
+                <h2 class="text-4xl md:text-5xl font-black text-dark mb-6 lang-ar">خريطة طريقك نحو الاحتراف</h2>
+                <h2 class="text-4xl md:text-5xl font-black text-dark mb-6 lang-en">Your Roadmap to Mastery</h2>
+                <p class="text-xl text-slate-500 max-w-2xl mx-auto font-medium lang-ar">محاور مدروسة بعناية لتنقلك من الصفر المطلق إلى القدرة على بناء أنظمة تحليل متكاملة.</p>
+                <p class="text-xl text-slate-500 max-w-2xl mx-auto font-medium lang-en">Carefully designed modules taking you from absolute zero to building complete analytical systems.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-3xl border-t-4 border-primary" data-aos="fade-up" data-aos-delay="0">
-                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6">
-                        <i data-lucide="layout" class="w-7 h-7"></i>
+                <div class="glass-card p-10 rounded-[2.5rem] group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-glow transform group-hover:-translate-y-2">
+                        <i data-lucide="layout" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl font-black mb-4 text-dark lang-ar">المستوى الأول: التأسيس</h3>
-                    <h3 class="text-xl font-black mb-4 text-dark lang-en">Level 1: Foundation</h3>
-                    <ul class="space-y-3 text-slate-600 font-medium text-sm">
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0"></i> <span class="lang-ar">التعرف على واجهة البرنامج وإدارة الملفات</span><span class="lang-en">UI orientation and file management</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0"></i> <span class="lang-ar">إدخال البيانات والتنسيق الشرطي (Conditional Formatting)</span><span class="lang-en">Data entry and Conditional Formatting</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary shrink-0"></i> <span class="lang-ar">الطباعة وإعداد الصفحات باحترافية</span><span class="lang-en">Professional printing and page setup</span></li>
+                    <h3 class="text-2xl font-black mb-6 text-dark lang-ar">المستوى 1: التأسيس القوي</h3>
+                    <h3 class="text-2xl font-black mb-6 text-dark lang-en">Level 1: Solid Foundation</h3>
+                    <ul class="space-y-4 text-slate-600 font-medium text-base">
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary shrink-0"></i> <span class="lang-ar">التعرف على واجهة البرنامج وإدارة الملفات</span><span class="lang-en">UI orientation and file management</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary shrink-0"></i> <span class="lang-ar">إدخال البيانات والتنسيق الشرطي (Conditional Formatting)</span><span class="lang-en">Data entry and Conditional Formatting</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary shrink-0"></i> <span class="lang-ar">الطباعة وإعداد الصفحات باحترافية</span><span class="lang-en">Professional printing and page setup</span></li>
                     </ul>
                 </div>
 
-                <div class="glass-card p-8 rounded-3xl border-t-4 border-dark" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center text-dark mb-6">
-                        <i data-lucide="function-square" class="w-7 h-7"></i>
+                <div class="glass-card p-10 rounded-[2.5rem] border-primary border-2 relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -top-4 right-10 bg-primary text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg lang-ar">جوهر التحليل</div>
+                    <div class="absolute -top-4 right-10 bg-primary text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg lang-en">Core Analysis</div>
+                    
+                    <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-300 transform group-hover:-translate-y-2">
+                        <i data-lucide="function-square" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl font-black mb-4 text-dark lang-ar">المستوى الثاني: الدوال والمعادلات</h3>
-                    <h3 class="text-xl font-black mb-4 text-dark lang-en">Level 2: Functions & Formulas</h3>
-                    <ul class="space-y-3 text-slate-600 font-medium text-sm">
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-dark shrink-0"></i> <span class="lang-ar">الدوال المنطقية والرياضية (IF, SUMIFS, COUNTIFS)</span><span class="lang-en">Logical & Math functions (IF, SUMIFS)</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-dark shrink-0"></i> <span class="lang-ar">دوال البحث المتقدمة (VLOOKUP, XLOOKUP, INDEX MATCH)</span><span class="lang-en">Advanced Lookup (VLOOKUP, XLOOKUP)</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-dark shrink-0"></i> <span class="lang-ar">التحقق من صحة البيانات (Data Validation)</span><span class="lang-en">Data Validation techniques</span></li>
+                    <h3 class="text-2xl font-black mb-6 text-dark lang-ar">المستوى 2: قوة الدوال والمعادلات</h3>
+                    <h3 class="text-2xl font-black mb-6 text-dark lang-en">Level 2: Power of Functions</h3>
+                    <ul class="space-y-4 text-slate-600 font-medium text-base">
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary shrink-0"></i> <span class="lang-ar">الدوال المنطقية والرياضية (IF, SUMIFS, COUNTIFS)</span><span class="lang-en">Logical & Math functions (IF, SUMIFS)</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary shrink-0"></i> <span class="lang-ar">دوال البحث المتقدمة (VLOOKUP, XLOOKUP, INDEX MATCH)</span><span class="lang-en">Advanced Lookup (VLOOKUP, XLOOKUP)</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary shrink-0"></i> <span class="lang-ar">التحقق من صحة البيانات (Data Validation)</span><span class="lang-en">Data Validation techniques</span></li>
                     </ul>
                 </div>
 
-                <div class="glass-card p-8 rounded-3xl border-t-4 border-primary_light" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-primary_light/10 rounded-2xl flex items-center justify-center text-primary_light mb-6">
-                        <i data-lucide="pie-chart" class="w-7 h-7"></i>
+                <div class="glass-card p-10 rounded-[2.5rem] group bg-dark text-white border-transparent" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:bg-primary transition-all duration-300 transform group-hover:-translate-y-2">
+                        <i data-lucide="pie-chart" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl font-black mb-4 text-dark lang-ar">المستوى الثالث: تحليل البيانات</h3>
-                    <h3 class="text-xl font-black mb-4 text-dark lang-en">Level 3: Data Analysis</h3>
-                    <ul class="space-y-3 text-slate-600 font-medium text-sm">
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary_light shrink-0"></i> <span class="lang-ar">الجداول المحورية (Pivot Tables) المتقدمة</span><span class="lang-en">Advanced Pivot Tables</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary_light shrink-0"></i> <span class="lang-ar">تصميم لوحات القيادة التفاعلية (Dashboards)</span><span class="lang-en">Designing Interactive Dashboards</span></li>
-                        <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-primary_light shrink-0"></i> <span class="lang-ar">المخططات البيانية (Charts) وتحليل الاتجاهات</span><span class="lang-en">Charts and Trend Analysis</span></li>
+                    <h3 class="text-2xl font-black mb-6 text-white lang-ar">المستوى 3: ذكاء الأعمال والتحليل</h3>
+                    <h3 class="text-2xl font-black mb-6 text-white lang-en">Level 3: Business Intelligence</h3>
+                    <ul class="space-y-4 text-slate-300 font-medium text-base">
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary shrink-0"></i> <span class="lang-ar">الجداول المحورية (Pivot Tables) المتقدمة</span><span class="lang-en">Advanced Pivot Tables</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary shrink-0"></i> <span class="lang-ar">تصميم لوحات القيادة التفاعلية (Dashboards)</span><span class="lang-en">Designing Interactive Dashboards</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-6 h-6 text-primary shrink-0"></i> <span class="lang-ar">المخططات البيانية (Charts) وتحليل الاتجاهات</span><span class="lang-en">Charts and Trend Analysis</span></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="schedule" class="py-20 bg-slate-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-black text-dark mb-4 lang-ar">مواعيد المحاضرات</h2>
-                <h2 class="text-3xl md:text-4xl font-black text-dark mb-4 lang-en">Class Schedule</h2>
-                <p class="text-primary font-bold lang-ar">10 محاضرات | ساعتان لكل محاضرة | 19:00 - 21:00</p>
-                <p class="text-primary font-bold lang-en">10 Sessions | 2 Hours Each | 19:00 - 21:00</p>
+    <section class="py-24 bg-slate-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-black text-dark mb-4 lang-ar">قصص نجاح متدربينا</h2>
+                <h2 class="text-4xl font-black text-dark mb-4 lang-en">Trainees Success Stories</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 relative" data-aos="fade-up" data-aos-delay="0">
+                    <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-primary/10"></i>
+                    <div class="flex text-yellow-400 w-4 h-4 gap-1 mb-6">
+                        <i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 font-medium mb-6 leading-relaxed lang-ar">"الدورة غيرت مساري المهني بالكامل! قدرتي الآن على تحليل البيانات وتصميم الـ Dashboards جعلتني أحصل على ترقية في عملي بوقت قياسي."</p>
+                    <p class="text-slate-600 font-medium mb-6 leading-relaxed lang-en">"The course completely changed my career path! My ability to analyze data and build Dashboards got me a promotion in record time."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center font-black text-primary text-xl">أ</div>
+                        <div>
+                            <h4 class="font-black text-dark lang-ar">أحمد م.</h4>
+                            <h4 class="font-black text-dark lang-en">Ahmad M.</h4>
+                            <span class="text-xs text-slate-500 font-bold lang-ar">محلل مالي</span>
+                            <span class="text-xs text-slate-500 font-bold lang-en">Financial Analyst</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 relative" data-aos="fade-up" data-aos-delay="100">
+                    <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-primary/10"></i>
+                    <div class="flex text-yellow-400 w-4 h-4 gap-1 mb-6">
+                        <i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 font-medium mb-6 leading-relaxed lang-ar">"شرح المهندس باسل مبسط جداً وعملي، ربط المعادلات بواقع العمل هو ما يميز هذه الدورة عن غيرها. استثمار رائع بكل المقاييس."</p>
+                    <p class="text-slate-600 font-medium mb-6 leading-relaxed lang-en">"Eng. Basel's explanation is very simple and practical. Linking formulas to real work scenarios is what makes this course unique."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center font-black text-primary text-xl">س</div>
+                        <div>
+                            <h4 class="font-black text-dark lang-ar">سارة ك.</h4>
+                            <h4 class="font-black text-dark lang-en">Sarah K.</h4>
+                            <span class="text-xs text-slate-500 font-bold lang-ar">مديرة عمليات</span>
+                            <span class="text-xs text-slate-500 font-bold lang-en">Operations Manager</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 relative" data-aos="fade-up" data-aos-delay="200">
+                    <i data-lucide="quote" class="absolute top-6 right-6 w-10 h-10 text-primary/10"></i>
+                    <div class="flex text-yellow-400 w-4 h-4 gap-1 mb-6">
+                        <i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 font-medium mb-6 leading-relaxed lang-ar">"لم أتخيل أن أتعلم كل هذا الكم من المعلومات عن دوال XLOOKUP والجداول المحورية في 10 محاضرات فقط. الدعم مستمر حتى بعد الكورس."</p>
+                    <p class="text-slate-600 font-medium mb-6 leading-relaxed lang-en">"I never imagined learning so much about XLOOKUP and Pivot Tables in just 10 sessions. The continuous support is amazing."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center font-black text-primary text-xl">ع</div>
+                        <div>
+                            <h4 class="font-black text-dark lang-ar">عمر د.</h4>
+                            <h4 class="font-black text-dark lang-en">Omar D.</h4>
+                            <span class="text-xs text-slate-500 font-bold lang-ar">مسؤول موارد بشرية</span>
+                            <span class="text-xs text-slate-500 font-bold lang-en">HR Executive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6" data-aos="fade-up">
+                <div>
+                    <h2 class="text-4xl font-black text-dark mb-4 lang-ar">جدول المحاضرات القادمة</h2>
+                    <h2 class="text-4xl font-black text-dark mb-4 lang-en">Upcoming Class Schedule</h2>
+                    <p class="text-slate-500 text-lg font-medium lang-ar">اخترنا أوقاتاً تناسب الموظفين والطلاب لضمان حضورك.</p>
+                    <p class="text-slate-500 text-lg font-medium lang-en">Timings chosen to suit professionals and students.</p>
+                </div>
+                <div class="bg-primary/10 px-6 py-3 rounded-xl border border-primary/20 flex items-center gap-4">
+                    <i data-lucide="clock" class="w-6 h-6 text-primary"></i>
+                    <div>
+                        <p class="font-black text-dark lang-ar">10 محاضرات مكثفة</p>
+                        <p class="font-black text-dark lang-en">10 Intensive Sessions</p>
+                        <p class="text-sm font-bold text-primary lang-ar">ساعتان لكل محاضرة | 19:00 - 21:00</p>
+                        <p class="text-sm font-bold text-primary lang-en">2 Hours Each | 19:00 - 21:00</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-slate-100" data-aos="zoom-in">
+            <div class="bg-white rounded-[2rem] shadow-xl overflow-hidden border border-slate-200" data-aos="zoom-in">
                 <div class="overflow-x-auto">
-                    <table class="w-full text-center">
-                        <thead class="bg-dark text-white font-bold">
+                    <table class="w-full text-center whitespace-nowrap">
+                        <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-black uppercase tracking-wider text-sm">
                             <tr>
-                                <th class="py-4 px-4 lang-ar">رقم المحاضرة</th><th class="py-4 px-4 lang-en">Session #</th>
-                                <th class="py-4 px-4 lang-ar">التاريخ</th><th class="py-4 px-4 lang-en">Date</th>
-                                <th class="py-4 px-4 lang-ar">اليوم</th><th class="py-4 px-4 lang-en">Day</th>
+                                <th class="py-5 px-6 lang-ar">رقم المحاضرة</th><th class="py-5 px-6 lang-en">Session #</th>
+                                <th class="py-5 px-6 lang-ar">التاريخ</th><th class="py-5 px-6 lang-en">Date</th>
+                                <th class="py-5 px-6 lang-ar">اليوم</th><th class="py-5 px-6 lang-en">Day</th>
                             </tr>
                         </thead>
-                        <tbody class="text-slate-600 divide-y divide-slate-100 font-medium">
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4">1</td><td class="py-3 px-4">2026-03-29</td>
-                                <td><span class="lang-ar">الأحد</span><span class="lang-en">Sunday</span></td>
+                        <tbody class="text-slate-700 divide-y divide-slate-100 font-bold">
+                            <tr class="hover:bg-primary/5 transition-colors cursor-default">
+                                <td class="py-4 px-6 text-primary">01</td><td class="py-4 px-6">2026-03-29</td><td><span class="lang-ar bg-slate-100 px-3 py-1 rounded-md">الأحد</span><span class="lang-en bg-slate-100 px-3 py-1 rounded-md">Sunday</span></td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4">2</td><td class="py-3 px-4">2026-03-31</td>
-                                <td><span class="lang-ar">الثلاثاء</span><span class="lang-en">Tuesday</span></td>
+                            <tr class="hover:bg-primary/5 transition-colors cursor-default">
+                                <td class="py-4 px-6 text-primary">02</td><td class="py-4 px-6">2026-03-31</td><td><span class="lang-ar bg-slate-100 px-3 py-1 rounded-md">الثلاثاء</span><span class="lang-en bg-slate-100 px-3 py-1 rounded-md">Tuesday</span></td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4">3</td><td class="py-3 px-4">2026-04-05</td>
-                                <td><span class="lang-ar">الأحد</span><span class="lang-en">Sunday</span></td>
+                            <tr class="hover:bg-primary/5 transition-colors cursor-default">
+                                <td class="py-4 px-6 text-primary">03</td><td class="py-4 px-6">2026-04-05</td><td><span class="lang-ar bg-slate-100 px-3 py-1 rounded-md">الأحد</span><span class="lang-en bg-slate-100 px-3 py-1 rounded-md">Sunday</span></td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4">4</td><td class="py-3 px-4">2026-04-07</td>
-                                <td><span class="lang-ar">الثلاثاء</span><span class="lang-en">Tuesday</span></td>
+                            <tr class="hover:bg-primary/5 transition-colors cursor-default">
+                                <td class="py-4 px-6 text-primary">04</td><td class="py-4 px-6">2026-04-07</td><td><span class="lang-ar bg-slate-100 px-3 py-1 rounded-md">الثلاثاء</span><span class="lang-en bg-slate-100 px-3 py-1 rounded-md">Tuesday</span></td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4">5</td><td class="py-3 px-4">2026-04-12</td>
-                                <td><span class="lang-ar">الأحد</span><span class="lang-en">Sunday</span></td>
+                            <tr class="hover:bg-primary/5 transition-colors cursor-default">
+                                <td class="py-4 px-6 text-primary">05</td><td class="py-4 px-6">2026-04-12</td><td><span class="lang-ar bg-slate-100 px-3 py-1 rounded-md">الأحد</span><span class="lang-en bg-slate-100 px-3 py-1 rounded-md">Sunday</span></td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4">6</td><td class="py-3 px-4">2026-04-14</td>
-                                <td><span class="lang-ar">الثلاثاء</span><span class="lang-en">Tuesday</span></td>
+                            <tr class="hover:bg-primary/5 transition-colors cursor-default">
+                                <td class="py-4 px-6 text-primary">06</td><td class="py-4 px-6">2026-04-14</td><td><span class="lang-ar bg-slate-100 px-3 py-1 rounded-md">الثلاثاء</span><span class="lang-en bg-slate-100 px-3 py-1 rounded-md">Tuesday</span></td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4">7</td><td class="py-3 px-4">2026-04-19</td>
-                                <td><span class="lang-ar">الأحد</span><span class="lang-en">Sunday</span></td>
+                            <tr class="hover:bg-primary/5 transition-colors cursor-default">
+                                <td class="py-4 px-6 text-primary">07</td><td class="py-4 px-6">2026-04-19</td><td><span class="lang-ar bg-slate-100 px-3 py-1 rounded-md">الأحد</span><span class="lang-en bg-slate-100 px-3 py-1 rounded-md">Sunday</span></td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4">8</td><td class="py-3 px-4">2026-04-21</td>
-                                <td><span class="lang-ar">الثلاثاء</span><span class="lang-en">Tuesday</span></td>
+                            <tr class="hover:bg-primary/5 transition-colors cursor-default">
+                                <td class="py-4 px-6 text-primary">08</td><td class="py-4 px-6">2026-04-21</td><td><span class="lang-ar bg-slate-100 px-3 py-1 rounded-md">الثلاثاء</span><span class="lang-en bg-slate-100 px-3 py-1 rounded-md">Tuesday</span></td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4">9</td><td class="py-3 px-4">2026-04-26</td>
-                                <td><span class="lang-ar">الأحد</span><span class="lang-en">Sunday</span></td>
+                            <tr class="hover:bg-primary/5 transition-colors cursor-default">
+                                <td class="py-4 px-6 text-primary">09</td><td class="py-4 px-6">2026-04-26</td><td><span class="lang-ar bg-slate-100 px-3 py-1 rounded-md">الأحد</span><span class="lang-en bg-slate-100 px-3 py-1 rounded-md">Sunday</span></td>
                             </tr>
-                            <tr class="hover:bg-slate-50 transition bg-primary/5 font-bold text-primary">
-                                <td class="py-3 px-4">10</td><td class="py-3 px-4">2026-04-28</td>
-                                <td><span class="lang-ar">الثلاثاء (الامتحان النهائي)</span><span class="lang-en">Tuesday (Final Exam)</span></td>
+                            <tr class="hover:bg-primary/10 transition-colors cursor-default bg-primary/5 relative">
+                                <td class="py-6 px-6 text-primary font-black text-lg">10</td>
+                                <td class="py-6 px-6 font-black text-dark text-lg">2026-04-28</td>
+                                <td>
+                                    <span class="lang-ar flex items-center justify-center gap-2"><i data-lucide="flag" class="w-4 h-4 text-primary"></i> الثلاثاء (الامتحان النهائي)</span>
+                                    <span class="lang-en flex items-center justify-center gap-2"><i data-lucide="flag" class="w-4 h-4 text-primary"></i> Tuesday (Final Exam)</span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -388,146 +591,228 @@
         </div>
     </section>
 
-    <section id="faq" class="py-20 bg-white">
+    <section id="faq" class="py-24 bg-slate-50 relative">
         <div class="max-w-3xl mx-auto px-4">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-black text-dark mb-4 lang-ar">الأسئلة الشائعة</h2>
-                <h2 class="text-3xl md:text-4xl font-black text-dark mb-4 lang-en">Frequently Asked Questions</h2>
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="w-12 h-1 bg-primary mx-auto block mb-6 rounded-full"></span>
+                <h2 class="text-4xl font-black text-dark mb-4 lang-ar">الأسئلة الشائعة</h2>
+                <h2 class="text-4xl font-black text-dark mb-4 lang-en">Frequently Asked Questions</h2>
+                <p class="text-slate-500 font-medium lang-ar">كل ما تحتاج معرفته قبل اتخاذ قرار الانضمام</p>
+                <p class="text-slate-500 font-medium lang-en">Everything you need to know before joining</p>
             </div>
 
             <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
-                <div x-data="{ open: false }" class="border border-slate-200 rounded-2xl overflow-hidden">
-                    <button @click="open = !open" class="w-full px-6 py-4 text-start font-bold flex justify-between items-center hover:bg-slate-50 transition">
+                <div x-data="{ open: false }" class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <button @click="open = !open" class="w-full px-6 py-5 text-start font-black text-lg flex justify-between items-center text-dark hover:text-primary transition-colors">
                         <span class="lang-ar">هل الدورة تناسب المبتدئين تماماً؟</span>
                         <span class="lang-en">Is the course suitable for complete beginners?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        <div class="bg-slate-50 p-2 rounded-full" :class="open ? 'bg-primary/10 text-primary' : 'text-slate-400'">
+                            <i data-lucide="plus" class="w-5 h-5 transition-transform duration-300" x-show="!open"></i>
+                            <i data-lucide="minus" class="w-5 h-5 transition-transform duration-300" x-show="open" x-cloak></i>
+                        </div>
                     </button>
-                    <div x-show="open" x-collapse class="px-6 pb-4 text-slate-600">
-                        <span class="lang-ar">نعم، الدورة مصممة لتبدأ معك من الصفر (التعرف على الواجهة) وتتدرج بك خطوة بخطوة حتى تصل لمستوى الاحتراف وبناء لوحات القيادة (Dashboards).</span>
-                        <span class="lang-en">Yes, the course starts from scratch and gradually takes you to an advanced level, including building complex Dashboards.</span>
+                    <div x-show="open" x-collapse x-transition:enter="transition ease-out duration-300" class="px-6 pb-6 text-slate-600 font-medium leading-relaxed">
+                        <span class="lang-ar">نعم، الدورة مصممة لتبدأ معك من الصفر (التعرف على الواجهة) وتتدرج بك خطوة بخطوة بطريقة منهجية حتى تصل لمستوى الاحتراف وبناء لوحات القيادة (Dashboards) المعقدة.</span>
+                        <span class="lang-en">Yes, the course starts from scratch and gradually takes you step-by-step to an advanced professional level, including building complex Dashboards.</span>
                     </div>
                 </div>
 
-                <div x-data="{ open: false }" class="border border-slate-200 rounded-2xl overflow-hidden">
-                    <button @click="open = !open" class="w-full px-6 py-4 text-start font-bold flex justify-between items-center hover:bg-slate-50 transition">
+                <div x-data="{ open: false }" class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <button @click="open = !open" class="w-full px-6 py-5 text-start font-black text-lg flex justify-between items-center text-dark hover:text-primary transition-colors">
                         <span class="lang-ar">هل المحاضرات مسجلة؟</span>
                         <span class="lang-en">Are the sessions recorded?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        <div class="bg-slate-50 p-2 rounded-full" :class="open ? 'bg-primary/10 text-primary' : 'text-slate-400'">
+                            <i data-lucide="plus" class="w-5 h-5 transition-transform duration-300" x-show="!open"></i>
+                            <i data-lucide="minus" class="w-5 h-5 transition-transform duration-300" x-show="open" x-cloak></i>
+                        </div>
                     </button>
-                    <div x-show="open" x-collapse class="px-6 pb-4 text-slate-600">
-                        <span class="lang-ar">نعم، جميع المحاضرات يتم تسجيلها وتوفيرها للمتدربين لمراجعتها في أي وقت لضمان عدم تفويت أي معلومة.</span>
-                        <span class="lang-en">Yes, all sessions are recorded and made available to trainees for review at any time.</span>
+                    <div x-show="open" x-collapse x-transition:enter="transition ease-out duration-300" class="px-6 pb-6 text-slate-600 font-medium leading-relaxed">
+                        <span class="lang-ar">نعم، جميع المحاضرات يتم تسجيلها بجودة عالية وتوفيرها للمتدربين لمراجعتها في أي وقت لضمان عدم تفويت أي معلومة ولكي تبقى مرجعاً لك في المستقبل.</span>
+                        <span class="lang-en">Yes, all sessions are recorded in high quality and made available to trainees for review at any time, acting as a permanent reference for you.</span>
                     </div>
                 </div>
 
-                <div x-data="{ open: false }" class="border border-slate-200 rounded-2xl overflow-hidden">
-                    <button @click="open = !open" class="w-full px-6 py-4 text-start font-bold flex justify-between items-center hover:bg-slate-50 transition">
+                <div x-data="{ open: false }" class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <button @click="open = !open" class="w-full px-6 py-5 text-start font-black text-lg flex justify-between items-center text-dark hover:text-primary transition-colors">
                         <span class="lang-ar">ما هي طرق الدفع المتاحة لرسوم الدورة (70 دينار)؟</span>
                         <span class="lang-en">What are the payment methods for the fee (70 JOD)?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        <div class="bg-slate-50 p-2 rounded-full" :class="open ? 'bg-primary/10 text-primary' : 'text-slate-400'">
+                            <i data-lucide="plus" class="w-5 h-5 transition-transform duration-300" x-show="!open"></i>
+                            <i data-lucide="minus" class="w-5 h-5 transition-transform duration-300" x-show="open" x-cloak></i>
+                        </div>
                     </button>
-                    <div x-show="open" x-collapse class="px-6 pb-4 text-slate-600">
-                        <span class="lang-ar">نقبل الدفع عبر المحافظ الإلكترونية (CliQ، Zain Cash، Orange Money)، بالإضافة إلى التحويل البنكي المباشر.</span>
-                        <span class="lang-en">We accept e-wallets (CliQ, Zain Cash, Orange Money) and direct bank transfers.</span>
+                    <div x-show="open" x-collapse x-transition:enter="transition ease-out duration-300" class="px-6 pb-6 text-slate-600 font-medium leading-relaxed">
+                        <span class="lang-ar">نقبل الدفع عبر المحافظ الإلكترونية المعتمدة (CliQ، Zain Cash، Orange Money)، بالإضافة إلى خيار التحويل البنكي المباشر لراحتكم.</span>
+                        <span class="lang-en">We accept approved e-wallets (CliQ, Zain Cash, Orange Money) and direct bank transfers for your convenience.</span>
                     </div>
                 </div>
                 
-                <div x-data="{ open: false }" class="border border-slate-200 rounded-2xl overflow-hidden">
-                    <button @click="open = !open" class="w-full px-6 py-4 text-start font-bold flex justify-between items-center hover:bg-slate-50 transition">
+                <div x-data="{ open: false }" class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <button @click="open = !open" class="w-full px-6 py-5 text-start font-black text-lg flex justify-between items-center text-dark hover:text-primary transition-colors">
                         <span class="lang-ar">كيف أحصل على الشهادات المعتمدة؟</span>
                         <span class="lang-en">How do I get the accredited certificates?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        <div class="bg-slate-50 p-2 rounded-full" :class="open ? 'bg-primary/10 text-primary' : 'text-slate-400'">
+                            <i data-lucide="plus" class="w-5 h-5 transition-transform duration-300" x-show="!open"></i>
+                            <i data-lucide="minus" class="w-5 h-5 transition-transform duration-300" x-show="open" x-cloak></i>
+                        </div>
                     </button>
-                    <div x-show="open" x-collapse class="px-6 pb-4 text-slate-600">
-                        <span class="lang-ar">بعد اجتياز الامتحان النهائي وتقييم المشاريع العملية والمواظبة على الحضور، سيتم إصدار الشهادات لك والمدعومة بـ 5 اعتمادات دولية.</span>
-                        <span class="lang-en">After passing the final exam, practical projects, and attending classes, you will receive your certificates backed by 5 international accreditations.</span>
+                    <div x-show="open" x-collapse x-transition:enter="transition ease-out duration-300" class="px-6 pb-6 text-slate-600 font-medium leading-relaxed">
+                        <span class="lang-ar">بعد اجتياز الامتحان النهائي وتقييم المشاريع العملية والمواظبة على الحضور، سيتم إصدار الشهادات الرسمية لك والمدعومة بـ 5 اعتمادات دولية قوية لتزيين سيرتك الذاتية.</span>
+                        <span class="lang-en">After passing the final exam, practical projects, and regular attendance, you will receive your official certificates backed by 5 strong international accreditations to enrich your resume.</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="register" class="py-24 bg-dark relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-dark to-primary/20 opacity-50"></div>
+    <section id="register" class="py-32 premium-gradient-bg relative overflow-hidden" 
+        x-data="{ 
+            name: '', 
+            phone: '', 
+            email: '', 
+            level: 'beginner',
+            submitted: false,
+            get isNameValid() { return this.name.length > 3; },
+            get isPhoneValid() { return this.phone.length >= 9; },
+            get isEmailValid() { return this.email.includes('@') && this.email.includes('.'); },
+            get isFormValid() { return this.isNameValid && this.isPhoneValid && this.isEmailValid; },
+            submitForm(e) {
+                e.preventDefault();
+                if(this.isFormValid) {
+                    this.submitted = true;
+                }
+            }
+        }">
+        <div class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.03]"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary rounded-full blur-[150px] opacity-30"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-primary_light rounded-full blur-[150px] opacity-20"></div>
+        
         <div class="max-w-4xl mx-auto px-4 relative z-10">
-            <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl" data-aos="zoom-in">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-black text-dark mb-2 lang-ar">نموذج التسجيل</h2>
-                    <h2 class="text-3xl md:text-4xl font-black text-dark mb-2 lang-en">Registration Form</h2>
-                    <p class="text-slate-500 lang-ar">املأ بياناتك وسنتواصل معك لتأكيد الحجز وتفاصيل الدفع.</p>
-                    <p class="text-slate-500 lang-en">Fill out your details and we will contact you for payment info.</p>
+            <div class="bg-white p-10 md:p-14 rounded-[3rem] shadow-2xl relative overflow-hidden" data-aos="zoom-in" data-aos-duration="800">
+                
+                <div x-show="submitted" x-transition.duration.500ms class="absolute inset-0 bg-white z-50 flex flex-col items-center justify-center text-center p-10">
+                    <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 animate-bounce">
+                        <i data-lucide="check" class="w-12 h-12 text-green-500"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-dark mb-4 lang-ar">تم استلام طلبك بنجاح!</h2>
+                    <h2 class="text-3xl font-black text-dark mb-4 lang-en">Request Received Successfully!</h2>
+                    <p class="text-slate-600 text-lg mb-8 lang-ar">سنتواصل معك عبر واتساب قريباً جداً لتأكيد الحجز وطريقة الدفع.</p>
+                    <p class="text-slate-600 text-lg mb-8 lang-en">We will contact you via WhatsApp shortly to confirm booking and payment.</p>
+                    <button @click="submitted = false; name=''; phone=''; email=''" class="bg-dark text-white px-8 py-3 rounded-xl font-bold hover:bg-primary transition-colors">
+                        <span class="lang-ar">إغلاق</span><span class="lang-en">Close</span>
+                    </button>
                 </div>
 
-                <form class="space-y-6">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-red-100 text-red-600 rounded-full font-bold text-xs mb-4 animate-pulse">
+                        <i data-lucide="flame" class="w-4 h-4"></i>
+                        <span class="lang-ar">يسجل الان 5 أشخاص في نفس الوقت</span>
+                        <span class="lang-en">5 people are registering right now</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-black text-dark mb-4 lang-ar">استثمر في مستقبلك الآن</h2>
+                    <h2 class="text-4xl md:text-5xl font-black text-dark mb-4 lang-en">Invest In Your Future Now</h2>
+                    <p class="text-slate-500 text-lg font-medium lang-ar">املأ بياناتك وسنتواصل معك لتأكيد الحجز وتفاصيل الدفع الآمن.</p>
+                    <p class="text-slate-500 text-lg font-medium lang-en">Fill out your details and we will contact you for secure payment info.</p>
+                </div>
+
+                <form @submit="submitForm" class="space-y-6 relative">
+                    <div class="w-full bg-slate-100 h-2 rounded-full mb-8 overflow-hidden">
+                        <div class="bg-primary h-full transition-all duration-500" :style="`width: ${(isNameValid ? 33 : 0) + (isPhoneValid ? 33 : 0) + (isEmailValid ? 34 : 0)}%`"></div>
+                    </div>
+
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2 lang-ar">الاسم الرباعي</label>
-                            <label class="block text-sm font-bold text-slate-700 mb-2 lang-en">Full Name</label>
-                            <input type="text" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition bg-slate-50" required>
+                        <div class="relative">
+                            <label class="block text-sm font-black text-dark mb-2 lang-ar">الاسم الرباعي</label>
+                            <label class="block text-sm font-black text-dark mb-2 lang-en">Full Name</label>
+                            <div class="relative">
+                                <i data-lucide="user" class="absolute top-1/2 -translate-y-1/2 rtl:right-4 ltr:left-4 w-5 h-5 text-slate-400"></i>
+                                <input type="text" x-model="name" :class="{'valid-input': isNameValid}" class="w-full px-12 py-4 rounded-xl border-2 border-slate-200 focus:border-primary focus:ring-0 outline-none transition bg-slate-50 font-medium text-dark" required placeholder="مثال: أحمد محمد علي حسن">
+                                <i data-lucide="check-circle-2" x-show="isNameValid" class="absolute top-1/2 -translate-y-1/2 rtl:left-4 ltr:right-4 w-5 h-5 text-green-500"></i>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2 lang-ar">رقم الهاتف (واتساب)</label>
-                            <label class="block text-sm font-bold text-slate-700 mb-2 lang-en">Phone (WhatsApp)</label>
-                            <input type="tel" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition bg-slate-50" required>
+                        <div class="relative">
+                            <label class="block text-sm font-black text-dark mb-2 lang-ar">رقم الهاتف (فعال على واتساب)</label>
+                            <label class="block text-sm font-black text-dark mb-2 lang-en">Phone (Active WhatsApp)</label>
+                            <div class="relative">
+                                <i data-lucide="phone" class="absolute top-1/2 -translate-y-1/2 rtl:right-4 ltr:left-4 w-5 h-5 text-slate-400"></i>
+                                <input type="tel" x-model="phone" :class="{'valid-input': isPhoneValid}" class="w-full px-12 py-4 rounded-xl border-2 border-slate-200 focus:border-primary focus:ring-0 outline-none transition bg-slate-50 font-medium text-dark text-left dir-ltr" required placeholder="07XXXXXXXX">
+                                <i data-lucide="check-circle-2" x-show="isPhoneValid" class="absolute top-1/2 -translate-y-1/2 rtl:left-4 ltr:right-4 w-5 h-5 text-green-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-sm font-black text-dark mb-2 lang-ar">البريد الإلكتروني</label>
+                        <label class="block text-sm font-black text-dark mb-2 lang-en">Email Address</label>
+                        <div class="relative">
+                            <i data-lucide="mail" class="absolute top-1/2 -translate-y-1/2 rtl:right-4 ltr:left-4 w-5 h-5 text-slate-400"></i>
+                            <input type="email" x-model="email" :class="{'valid-input': isEmailValid}" class="w-full px-12 py-4 rounded-xl border-2 border-slate-200 focus:border-primary focus:ring-0 outline-none transition bg-slate-50 font-medium text-dark text-left dir-ltr" required placeholder="your@email.com">
+                            <i data-lucide="check-circle-2" x-show="isEmailValid" class="absolute top-1/2 -translate-y-1/2 rtl:left-4 ltr:right-4 w-5 h-5 text-green-500"></i>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2 lang-ar">البريد الإلكتروني</label>
-                        <label class="block text-sm font-bold text-slate-700 mb-2 lang-en">Email Address</label>
-                        <input type="email" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition bg-slate-50" required>
+                        <label class="block text-sm font-black text-dark mb-2 lang-ar">مستواك الحالي في الإكسل</label>
+                        <label class="block text-sm font-black text-dark mb-2 lang-en">Current Excel Level</label>
+                        <div class="relative">
+                            <i data-lucide="bar-chart" class="absolute top-1/2 -translate-y-1/2 rtl:right-4 ltr:left-4 w-5 h-5 text-slate-400"></i>
+                            <select x-model="level" class="w-full px-12 py-4 rounded-xl border-2 border-slate-200 focus:border-primary focus:ring-0 outline-none transition bg-slate-50 font-medium text-dark appearance-none">
+                                <option value="beginner" class="lang-ar font-medium">مبتدئ (لا أعرف شيئاً)</option>
+                                <option value="beginner" class="lang-en font-medium">Beginner</option>
+                                <option value="intermediate" class="lang-ar font-medium">متوسط (أعرف الأساسيات)</option>
+                                <option value="intermediate" class="lang-en font-medium">Intermediate</option>
+                                <option value="advanced" class="lang-ar font-medium">متقدم (أريد تعلم تحليل البيانات)</option>
+                                <option value="advanced" class="lang-en font-medium">Advanced</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="absolute top-1/2 -translate-y-1/2 rtl:left-4 ltr:right-4 w-5 h-5 text-slate-400 pointer-events-none"></i>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2 lang-ar">مستواك الحالي في الإكسل</label>
-                        <label class="block text-sm font-bold text-slate-700 mb-2 lang-en">Current Excel Level</label>
-                        <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition bg-slate-50">
-                            <option value="beginner" class="lang-ar">مبتدئ (لا أعرف شيئاً)</option>
-                            <option value="beginner" class="lang-en">Beginner</option>
-                            <option value="intermediate" class="lang-ar">متوسط (أعرف الأساسيات)</option>
-                            <option value="intermediate" class="lang-en">Intermediate</option>
-                            <option value="advanced" class="lang-ar">متقدم (أريد تعلم تحليل البيانات)</option>
-                            <option value="advanced" class="lang-en">Advanced</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="w-full bg-primary text-white font-black text-lg py-4 rounded-xl shadow-lg hover:bg-primary_dark transition transform hover:-translate-y-1 mt-4">
+                    
+                    <button type="submit" 
+                        :class="isFormValid ? 'bg-gradient-to-r from-primary to-primary_dark hover:-translate-y-1 shadow-premium cursor-pointer' : 'bg-slate-300 text-slate-500 cursor-not-allowed'"
+                        class="w-full text-white font-black text-xl py-5 rounded-2xl transition-all duration-300 mt-6 flex items-center justify-center gap-3">
+                        <i data-lucide="lock" class="w-5 h-5" x-show="isFormValid"></i>
                         <span class="lang-ar">تأكيد التسجيل (70 دينار)</span>
                         <span class="lang-en">Confirm Registration (70 JOD)</span>
                     </button>
+                    
+                    <div class="flex items-center justify-center gap-4 mt-4 text-xs font-bold text-slate-400">
+                        <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-4 h-4"></i> <span class="lang-ar">دفع آمن</span><span class="lang-en">Secure Payment</span></span>
+                        <span class="flex items-center gap-1"><i data-lucide="lock" class="w-4 h-4"></i> <span class="lang-ar">بيانات مشفرة</span><span class="lang-en">Encrypted Data</span></span>
+                    </div>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="bg-dark text-slate-400 py-12 px-4 border-t border-slate-800 text-center">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-center mb-6">
-                <div class="bg-slate-800 p-4 rounded-2xl text-primary">
-                    <i data-lucide="bar-chart-2" class="w-8 h-8"></i>
+    <footer class="bg-dark text-slate-400 py-16 px-4 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:20px_20px] opacity-20"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="flex justify-center mb-8">
+                <div class="bg-gradient-to-br from-primary to-primary_dark p-4 rounded-2xl text-white shadow-glow transform hover:rotate-12 transition-transform duration-500">
+                    <i data-lucide="bar-chart-2" class="w-10 h-10"></i>
                 </div>
             </div>
             
-            <div class="flex flex-wrap justify-center gap-6 mb-8">
-                <a href="https://www.linkedin.com/in/baselghanem/" target="_blank" class="hover:text-primary transition-colors flex items-center gap-2">
-                    <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn
+            <div class="flex flex-wrap justify-center gap-8 mb-10">
+                <a href="https://www.linkedin.com/in/baselghanem/" target="_blank" class="text-slate-400 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg transition-all flex items-center gap-2 font-bold">
+                    <i data-lucide="linkedin" class="w-5 h-5 text-[#0A66C2]"></i> LinkedIn
                 </a>
-                <a href="http://wa.me/962788458787" target="_blank" class="hover:text-primary transition-colors flex items-center gap-2">
-                    <i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp
+                <a href="http://wa.me/962788458787" target="_blank" class="text-slate-400 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg transition-all flex items-center gap-2 font-bold">
+                    <i data-lucide="message-circle" class="w-5 h-5 text-[#25D366]"></i> WhatsApp
                 </a>
-                <a href="https://baselghanem.github.io/" target="_blank" class="hover:text-primary transition-colors flex items-center gap-2">
-                    <i data-lucide="globe" class="w-5 h-5"></i> Portfolio
+                <a href="https://baselghanem.github.io/" target="_blank" class="text-slate-400 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg transition-all flex items-center gap-2 font-bold">
+                    <i data-lucide="globe" class="w-5 h-5 text-primary"></i> Portfolio
                 </a>
             </div>
             
-            <div class="text-sm opacity-50 font-medium">
-                © 2026 - <span class="lang-ar">تم التصميم والتطوير من قبل</span><span class="lang-en">Designed & Developed by</span> X Academy, Amman - Jordan
+            <div class="text-sm font-medium bg-white/5 inline-block px-6 py-3 rounded-full border border-white/10">
+                © 2026 - <span class="lang-ar">تم التصميم والتطوير من قبل</span><span class="lang-en">Designed & Developed by</span> <strong class="text-white">X Academy</strong>, Amman - Jordan
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Icons
         lucide.createIcons();
 
-        // Initialize Animations
         AOS.init({
             once: true,
             offset: 50,
@@ -535,7 +820,6 @@
             easing: 'ease-out-cubic',
         });
 
-        // Language Toggle Logic
         function toggleLang() {
             const html = document.documentElement;
             if (html.lang === 'ar') {
@@ -549,6 +833,19 @@
 
         document.getElementById('langToggle').addEventListener('click', toggleLang);
         document.getElementById('langToggleMobile').addEventListener('click', toggleLang);
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyBBdAxS7_i24eoLqotOZaCQ5jMRmQImVms",
+            authDomain: "x-academy-registration.firebaseapp.com",
+            projectId: "x-academy-registration",
+            storageBucket: "x-academy-registration.firebasestorage.app",
+            messagingSenderId: "675856360780",
+            appId: "1:675856360780:web:b59fd8d4c48e23d5985be9"
+        };
+        const app = initializeApp(firebaseConfig);
     </script>
 </body>
 </html>

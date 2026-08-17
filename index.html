@@ -60,6 +60,37 @@ html,body{height:100%;overflow:hidden;font-family:'Cairo',sans-serif;background:
 /* Teal accent slides */
 .slide-teal{background:linear-gradient(145deg,#066666 0%,#099999 100%);}
 
+/* ── CELLO BRAND WORLD ── */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.22;
+  background-image:linear-gradient(rgba(9,153,153,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(9,153,153,.09) 1px,transparent 1px);
+  background-size:42px 42px;mask-image:radial-gradient(circle at 50% 45%,#000,transparent 78%);
+}
+.slide-dark{background:radial-gradient(circle at 78% 18%,rgba(9,153,153,.18),transparent 34%),linear-gradient(145deg,#07101d 0%,#0d2030 100%);}
+.slide-light{background:radial-gradient(circle at 15% 10%,rgba(9,153,153,.12),transparent 34%),linear-gradient(145deg,#fffaf3,#f3fbfa);}
+.slide-teal{background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.18),transparent 30%),linear-gradient(145deg,#055f62,#099999 64%,#0bb2ae);}
+.slide::after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(9,153,153,.09);filter:blur(70px);z-index:-1;animation:ambientFloat 8s ease-in-out infinite alternate;}
+@keyframes ambientFloat{from{transform:translate(-22vw,-15vh) scale(.85)}to{transform:translate(24vw,18vh) scale(1.15)}}
+
+#celloCompanion{position:fixed;left:clamp(.8rem,3vw,3rem);bottom:clamp(.65rem,2vw,1.6rem);z-index:40;width:clamp(116px,19vw,280px);aspect-ratio:1;cursor:pointer;filter:drop-shadow(0 22px 28px rgba(0,0,0,.26));transition:opacity .28s,transform .48s cubic-bezier(.2,.9,.2,1);user-select:none;}
+#celloCompanion::before{content:"";position:absolute;inset:14% 7% 3%;border-radius:50%;background:rgba(9,153,153,.28);filter:blur(30px);z-index:-1;}
+#celloCompanion img{width:100%;height:100%;object-fit:contain;border-radius:28%;mix-blend-mode:normal;animation:celloBreathe 4.2s ease-in-out infinite;transition:transform .35s ease;}
+#celloCompanion:hover img{transform:translateY(-8px) rotate(-2deg) scale(1.035);}
+#celloCompanion.is-changing{opacity:0;transform:translateY(22px) scale(.92);}
+#celloCompanion .cello-tip{position:absolute;bottom:1%;left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(7,16,29,.78);color:#fff;border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px);border-radius:999px;padding:.35rem .7rem;font-size:.65rem;font-weight:800;opacity:0;transition:.25s;}
+#celloCompanion:hover .cello-tip{opacity:1;bottom:-3%;}
+@keyframes celloBreathe{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(1deg)}}
+.slide.active>div{animation:contentReveal .65s .08s both cubic-bezier(.2,.8,.2,1);}
+@keyframes contentReveal{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+.slide-card,.sess-row,.faq-item,.quiz-opt{backdrop-filter:blur(14px);}
+
+@media(max-width:760px){
+  #celloCompanion{width:110px;left:.35rem;bottom:.35rem;opacity:.9;}
+  #celloCompanion .cello-tip{display:none;}
+  .slide{padding:4.25rem 1rem 6rem;}
+}
+@media(prefers-reduced-motion:reduce){#celloCompanion img,.slide::after,.slide.active>div{animation:none!important;}.slide{transition:none!important;}}
+
 /* ── PROGRESS BAR ── */
 #progressBar{
   position:fixed;top:0;left:0;height:3px;
@@ -292,6 +323,11 @@ html[lang="en"] body{font-family:'Poppins',sans-serif;}
 <div id="progressBar" style="width:0%"></div>
 
 <div id="navDots"></div>
+
+<div id="celloCompanion" role="button" tabindex="0" aria-label="Cello mascot — change pose" onclick="cycleCello()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();cycleCello();}">
+  <img id="celloImage" src="assets/cello/cello-hero.webp" alt="Cello, X Academy mascot" width="900" height="900" decoding="async">
+  <span class="cello-tip ar">اضغط لتغيير حركة Cello</span><span class="cello-tip en">Tap to change Cello's pose</span>
+</div>
 
 <button id="backBtn" onclick="goBack()" title="رجوع" style="display:none">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
@@ -815,16 +851,16 @@ let regFilter = 'all';
 // Default schedules
 const defaultSessions = {
   excel:[
-    {num:1,month:'JUN',day:'15',dayAr:'الاثنين',dayEn:'Monday'},
-    {num:2,month:'JUN',day:'17',dayAr:'الأربعاء',dayEn:'Wednesday'},
-    {num:3,month:'JUN',day:'22',dayAr:'الاثنين',dayEn:'Monday'},
-    {num:4,month:'JUN',day:'24',dayAr:'الأربعاء',dayEn:'Wednesday'},
-    {num:5,month:'JUN',day:'29',dayAr:'الاثنين',dayEn:'Monday'},
-    {num:6,month:'JUL',day:'01',dayAr:'الأربعاء',dayEn:'Wednesday'},
-    {num:7,month:'JUL',day:'06',dayAr:'الاثنين',dayEn:'Monday'},
-    {num:8,month:'JUL',day:'08',dayAr:'الأربعاء',dayEn:'Wednesday'},
-    {num:9,month:'JUL',day:'13',dayAr:'الاثنين',dayEn:'Monday'},
-    {num:10,month:'JUL',day:'15',dayAr:'الأربعاء',dayEn:'Wednesday'},
+    {num:1,date:'2026-08-30',year:2026,month:'AUG',day:'30',dayAr:'الأحد',dayEn:'Sunday',startTime:'19:00',endTime:'21:00'},
+    {num:2,date:'2026-08-31',year:2026,month:'AUG',day:'31',dayAr:'الإثنين',dayEn:'Monday',startTime:'19:00',endTime:'21:00'},
+    {num:3,date:'2026-09-02',year:2026,month:'SEP',day:'02',dayAr:'الأربعاء',dayEn:'Wednesday',startTime:'19:00',endTime:'21:00'},
+    {num:4,date:'2026-09-06',year:2026,month:'SEP',day:'06',dayAr:'الأحد',dayEn:'Sunday',startTime:'19:00',endTime:'21:00'},
+    {num:5,date:'2026-09-07',year:2026,month:'SEP',day:'07',dayAr:'الإثنين',dayEn:'Monday',startTime:'19:00',endTime:'21:00'},
+    {num:6,date:'2026-09-09',year:2026,month:'SEP',day:'09',dayAr:'الأربعاء',dayEn:'Wednesday',startTime:'19:00',endTime:'21:00'},
+    {num:7,date:'2026-09-13',year:2026,month:'SEP',day:'13',dayAr:'الأحد',dayEn:'Sunday',startTime:'19:00',endTime:'21:00'},
+    {num:8,date:'2026-09-14',year:2026,month:'SEP',day:'14',dayAr:'الإثنين',dayEn:'Monday',startTime:'19:00',endTime:'21:00'},
+    {num:9,date:'2026-09-16',year:2026,month:'SEP',day:'16',dayAr:'الأربعاء',dayEn:'Wednesday',startTime:'19:00',endTime:'21:00'},
+    {num:10,date:'2026-09-20',year:2026,month:'SEP',day:'20',dayAr:'الأحد',dayEn:'Sunday',startTime:'19:00',endTime:'21:00'},
   ],
   powerbi:[
     {num:1,month:'JUN',day:'16',dayAr:'الثلاثاء',dayEn:'Tuesday'},
@@ -840,6 +876,36 @@ const defaultSessions = {
   ]
 };
 let liveSessions = JSON.parse(JSON.stringify(defaultSessions));
+
+const CELLO_ASSETS = [
+  `cello-hero.webp`,`cello-master.webp`,`cello-chart.webp`,`cello-formula.webp`,
+  `cello-dashboard.webp`,`cello-teacher.webp`,`cello-calendar.webp`,`cello-certificate.webp`,
+  `cello-payment.webp`,`cello-question.webp`,`cello-quiz.webp`,`cello-success.webp`,
+  `cello-registration.webp`,`cello-support.webp`,`cello-powerbi.webp`,`cello-study.webp`,
+  `cello-rocket.webp`,`cello-trophy.webp`,`cello-mobile.webp`,`cello-goodbye.webp`
+];
+const CELLO_BY_SLIDE = [0,5,4,6,7,8,9,10,2,3,14,17,12,19];
+let celloVariantOffset = 0;
+
+function setCelloAsset(assetIndex, animate = true) {
+  const shell = document.getElementById(`celloCompanion`);
+  const image = document.getElementById(`celloImage`);
+  if(!shell || !image) return;
+  const safeIndex = ((assetIndex % CELLO_ASSETS.length) + CELLO_ASSETS.length) % CELLO_ASSETS.length;
+  const apply = () => {
+    image.src = `assets/cello/${CELLO_ASSETS[safeIndex]}`;
+    image.alt = isAr() ? `Cello، مساعدك الذكي في X Academy` : `Cello, your smart X Academy guide`;
+    shell.classList.remove(`is-changing`);
+  };
+  if(!animate) return apply();
+  shell.classList.add(`is-changing`);
+  window.setTimeout(apply, 180);
+}
+
+function cycleCello() {
+  celloVariantOffset = (celloVariantOffset + 1) % CELLO_ASSETS.length;
+  setCelloAsset((CELLO_BY_SLIDE[currentSlide] || 0) + celloVariantOffset);
+}
 
 const syllabusData = {
   excel:[
@@ -927,6 +993,8 @@ function updateUI() {
 
   // Nav dots
   renderNavDots();
+  celloVariantOffset = 0;
+  setCelloAsset(CELLO_BY_SLIDE[currentSlide] || 0);
 }
 
 function renderNavDots() {
@@ -969,6 +1037,11 @@ async function loadScheduleFromFirebase() {
   if(!fb) return;
   try {
     for(const course of ['excel','powerbi']) {
+      if(course === 'excel') {
+        liveSessions.excel = JSON.parse(JSON.stringify(defaultSessions.excel));
+        normalizeSessionDates('excel');
+        continue;
+      }
       const ref = fb.doc(fb.db,'schedules',course);
       const snap = await fb.getDoc(ref);
       if(snap.exists() && Array.isArray(snap.data().sessions)) liveSessions[course] = snap.data().sessions;

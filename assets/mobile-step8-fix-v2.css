@@ -1,0 +1,146 @@
+@media (max-width: 720px) {
+  .journey.journey-step-7 {
+    display: block !important;
+    height: calc(100dvh - 96px) !important;
+    min-height: calc(100dvh - 96px) !important;
+    padding-top: 96px !important;
+    overflow: hidden !important;
+  }
+
+  .journey-step-7 .visual-panel {
+    display: none !important;
+  }
+
+  .journey-step-7 .content-panel.step-7 {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: calc(100dvh - 96px) !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding: 14px 18px 24px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .journey-step-7 .content-panel.step-7 > .panel-brand {
+    display: none !important;
+  }
+
+  .journey-step-7 .step-meta {
+    display: block !important;
+    margin: 0 0 2px !important;
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+
+  .journey-step-7 .content-panel.step-7 > h1 {
+    display: block !important;
+    margin: 2px 0 2px !important;
+    font-size: 26px !important;
+    line-height: 1.2 !important;
+    letter-spacing: -1px !important;
+  }
+
+  .journey-step-7 .content-panel.step-7 > .subtitle {
+    display: block !important;
+    margin: 0 0 8px !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
+  .journey-step-7 .step-content {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .journey-step-7 .register-form {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .journey-step-7 .register-form .lead {
+    display: block !important;
+    margin: 0 0 8px !important;
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+
+  .journey-step-7 .form-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: none !important;
+    gap: 8px !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .journey-step-7 .register-form label {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+  }
+
+  .journey-step-7 .register-form input {
+    display: block !important;
+    width: 100% !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    margin: 3px 0 0 !important;
+    padding: 9px 12px !important;
+    font-size: 14px !important;
+  }
+
+  .journey-step-7 .submit {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 44px !important;
+    margin: 10px 0 0 !important;
+    padding: 10px 14px !important;
+  }
+
+  .journey-step-7 .privacy {
+    display: block !important;
+    margin: 6px 0 0 !important;
+    padding: 0 0 10px !important;
+    font-size: 10px !important;
+    line-height: 1.4 !important;
+  }
+
+  .journey-step-7 .nav-actions,
+  .journey-step-7 + .fabs {
+    display: none !important;
+  }
+}
+
+@media (max-width: 720px) and (max-height: 700px) {
+  .journey-step-7 .content-panel.step-7 {
+    padding-top: 10px !important;
+  }
+
+  .journey-step-7 .content-panel.step-7 > h1 {
+    font-size: 22px !important;
+  }
+
+  .journey-step-7 .register-form input {
+    height: 39px !important;
+    min-height: 39px !important;
+  }
+}

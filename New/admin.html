@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <title>X Academy · Admin by Cello</title>
+    <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-vendor-BqIy-JJv.js">
+    <link rel="modulepreload" crossorigin href="./assets/firebase-core-DKFvvrTN.js">
+    <link rel="modulepreload" crossorigin href="./assets/firebase-auth-CRalIVeA.js">
+    <link rel="modulepreload" crossorigin href="./assets/firebase-firestore-C2r-6Bua.js">
+    <link rel="modulepreload" crossorigin href="./assets/firebase-entry--GwX1icN.js">
+    <link rel="stylesheet" crossorigin href="./assets/admin-CoNeF690.css?v=20260831-pin-gate">
+    <style>
+      :root {
+        color-scheme: dark;
+        --gate-bg: #071313;
+        --gate-panel: rgba(12, 31, 31, .88);
+        --gate-teal: #099999;
+        --gate-text: #f4fbfa;
+        --gate-muted: #8aa4a2;
+        --gate-danger: #ff7676;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--gate-bg);
+      }
+
+      .pin-gate {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        padding: 24px;
+        background:
+          radial-gradient(circle at 50% 38%, rgba(9, 153, 153, .15), transparent 34%),
+          linear-gradient(145deg, #061010, #091a1a 52%, #050d0d);
+        font-family: "Tajawal", "Segoe UI", sans-serif;
+        transition: opacity .45s ease, visibility .45s ease;
+      }
+
+      .pin-gate::before {
+        content: "";
+        position: absolute;
+        width: 460px;
+        height: 460px;
+        border: 1px solid rgba(9, 153, 153, .12);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 48px rgba(9, 153, 153, .025),
+          0 0 0 96px rgba(9, 153, 153, .018);
+        animation: gatePulse 4s ease-in-out infinite;
+      }
+
+      .pin-gate.unlocked {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .pin-card {
+        position: relative;
+        width: min(100%, 430px);
+        padding: 42px 30px 34px;
+        border: 1px solid rgba(135, 219, 214, .13);
+        border-radius: 28px;
+        background: var(--gate-panel);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, .46);
+        text-align: center;
+        backdrop-filter: blur(22px);
+      }
+
+      .cipher-mark {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 24px;
+        border: 1px solid rgba(9, 153, 153, .45);
+        border-radius: 22px;
+        color: #bdf9f5;
+        background: rgba(9, 153, 153, .09);
+        box-shadow: inset 0 0 22px rgba(9, 153, 153, .08), 0 0 34px rgba(9, 153, 153, .12);
+      }
+
+      .cipher-mark::before,
+      .cipher-mark::after {
+        content: "";
+        position: absolute;
+        border: 1px dashed rgba(9, 153, 153, .34);
+        border-radius: 50%;
+        animation: gateSpin 8s linear infinite;
+      }
+
+      .cipher-mark::before { width: 91px; height: 91px; }
+      .cipher-mark::after {
+        width: 109px;
+        height: 109px;
+        animation-direction: reverse;
+        animation-duration: 13s;
+      }
+
+      .cipher-mark span {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -2px;
+      }
+
+      .pin-card h1 {
+        margin: 0 0 8px;
+        color: var(--gate-text);
+        font-size: clamp(25px, 6vw, 34px);
+        letter-spacing: -.7px;
+      }
+
+      .pin-card p {
+        margin: 0;
+        color: var(--gate-muted);
+        font-size: 14px;
+      }
+
+      .pin-inputs {
+        display: flex;
+        direction: ltr;
+        justify-content: center;
+        gap: 12px;
+        margin: 32px 0 18px;
+      }
+
+      .pin-digit {
+        width: 62px;
+        height: 72px;
+        border: 1px solid rgba(139, 191, 188, .2);
+        border-radius: 18px;
+        outline: 0;
+        color: var(--gate-text);
+        background: rgba(255, 255, 255, .035);
+        caret-color: transparent;
+        text-align: center;
+        font: 700 30px/1 "Segoe UI", sans-serif;
+        transition: border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease;
+      }
+
+      .pin-digit:focus,
+      .pin-digit.filled {
+        border-color: rgba(9, 153, 153, .9);
+        background: rgba(9, 153, 153, .11);
+        box-shadow: 0 0 0 4px rgba(9, 153, 153, .08);
+        transform: translateY(-2px);
+      }
+
+      .pin-status {
+        min-height: 22px;
+        color: var(--gate-muted);
+        font-size: 13px;
+      }
+
+      .pin-status.error { color: var(--gate-danger); }
+      .pin-status.success { color: #67dfb4; }
+
+      .pin-card.shake { animation: gateShake .35s ease; }
+
+      @keyframes gatePulse {
+        0%, 100% { transform: scale(.96); opacity: .65; }
+        50% { transform: scale(1.04); opacity: 1; }
+      }
+
+      @keyframes gateSpin { to { transform: rotate(360deg); } }
+
+      @keyframes gateShake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-9px); }
+        75% { transform: translateX(9px); }
+      }
+
+      @media (max-width: 480px) {
+        .pin-card { padding: 38px 18px 30px; border-radius: 24px; }
+        .pin-inputs { gap: 8px; }
+        .pin-digit { width: 54px; height: 66px; border-radius: 16px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pin-gate" class="pin-gate" aria-labelledby="pin-title">
+      <section id="pin-card" class="pin-card">
+        <div class="cipher-mark" aria-hidden="true"><span>X</span></div>
+        <h1 id="pin-title">بوابة التحكم</h1>
+        <p>أدخل رمز الوصول المكوّن من أربعة أرقام</p>
+
+        <div id="pin-inputs" class="pin-inputs" aria-label="رمز الوصول">
+          <input class="pin-digit" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="one-time-code" aria-label="الرقم الأول">
+          <input class="pin-digit" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="الرقم الثاني">
+          <input class="pin-digit" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="الرقم الثالث">
+          <input class="pin-digit" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="الرقم الرابع">
+        </div>
+
+        <div id="pin-status" class="pin-status" role="status" aria-live="polite">Encrypted access · X Academy</div>
+      </section>
+    </div>
+
+    <div id="admin-root"></div>
+
+    <script>
+      (() => {
+        const ACCESS_HASH = `9060ce5653093cd9bff480cb01ff0e3a790e6f545e214a3dd85841daabac7848`;
+        const SESSION_KEY = `xacademy_admin_pin_verified`;
+        const gate = document.getElementById(`pin-gate`);
+        const card = document.getElementById(`pin-card`);
+        const status = document.getElementById(`pin-status`);
+        const inputs = [...document.querySelectorAll(`.pin-digit`)];
+        let loadingStarted = false;
+
+        const loadAdmin = () => {
+          if (loadingStarted) return;
+          loadingStarted = true;
+
+          const script = document.createElement(`script`);
+          script.type = `module`;
+          script.crossOrigin = `anonymous`;
+          script.src = `./assets/admin-D-CAs6Z0.js?v=20260831-pin-gate`;
+          document.body.appendChild(script);
+        };
+
+        const unlock = () => {
+          sessionStorage.setItem(SESSION_KEY, `1`);
+          status.className = `pin-status success`;
+          status.textContent = `تم فك التشفير · جاري فتح لوحة التحكم`;
+          loadAdmin();
+
+          window.setTimeout(() => {
+            gate.classList.add(`unlocked`);
+          }, 380);
+
+          window.setTimeout(() => {
+            gate.remove();
+          }, 900);
+        };
+
+        const digest = async (value) => {
+          const bytes = new TextEncoder().encode(value);
+          const hashBuffer = await crypto.subtle.digest(`SHA-256`, bytes);
+          return [...new Uint8Array(hashBuffer)]
+            .map((byte) => byte.toString(16).padStart(2, `0`))
+            .join(``);
+        };
+
+        const reset = () => {
+          card.classList.remove(`shake`);
+          void card.offsetWidth;
+          card.classList.add(`shake`);
+          status.className = `pin-status error`;
+          status.textContent = `رمز الوصول غير صحيح`;
+          inputs.forEach((input) => {
+            input.value = ``;
+            input.classList.remove(`filled`);
+          });
+          inputs[0].focus();
+        };
+
+        const verify = async () => {
+          const pin = inputs.map((input) => input.value).join(``);
+          if (pin.length !== 4) return;
+
+          status.className = `pin-status`;
+          status.textContent = `جاري التحقق من البصمة المشفّرة…`;
+
+          const enteredHash = await digest(pin);
+          if (enteredHash === ACCESS_HASH) {
+            unlock();
+          } else {
+            reset();
+          }
+        };
+
+        inputs.forEach((input, index) => {
+          input.addEventListener(`input`, () => {
+            input.value = input.value.replace(/\D/g, ``).slice(-1);
+            input.classList.toggle(`filled`, Boolean(input.value));
+
+            if (input.value && index < inputs.length - 1) {
+              inputs[index + 1].focus();
+            }
+
+            verify();
+          });
+
+          input.addEventListener(`keydown`, (event) => {
+            if (event.key === `Backspace` && !input.value && index > 0) {
+              inputs[index - 1].focus();
+            }
+
+            if (event.key === `ArrowLeft` && index > 0) {
+              inputs[index - 1].focus();
+            }
+
+            if (event.key === `ArrowRight` && index < inputs.length - 1) {
+              inputs[index + 1].focus();
+            }
+          });
+
+          input.addEventListener(`focus`, () => input.select());
+        });
+
+        document.getElementById(`pin-inputs`).addEventListener(`paste`, (event) => {
+          const digits = event.clipboardData.getData(`text`).replace(/\D/g, ``).slice(0, 4);
+          if (!digits) return;
+
+          event.preventDefault();
+          digits.split(``).forEach((digit, index) => {
+            inputs[index].value = digit;
+            inputs[index].classList.add(`filled`);
+          });
+
+          inputs[Math.min(digits.length, 4) - 1].focus();
+          verify();
+        });
+
+        if (sessionStorage.getItem(SESSION_KEY) === `1`) {
+          gate.remove();
+          loadAdmin();
+        } else {
+          window.requestAnimationFrame(() => inputs[0].focus());
+        }
+      })();
+    </script>
+  </body>
+</html>

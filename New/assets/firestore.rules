@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    match /registrations/{docId} {
+      allow create: if true;
+      allow read, update, delete: if isSignedIn();
+    }
+    match /visitors/{docId} {
+      allow create: if true;
+      allow read, update, delete: if isSignedIn();
+    }
+    match /visitorEvents/{docId} {
+      allow create: if true;
+      allow read, update, delete: if isSignedIn();
+    }
+    match /schedules/{courseId} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+    match /siteSettings/{documentId} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+  }
+}

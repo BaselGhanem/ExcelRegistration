@@ -15,6 +15,237 @@
 @media(max-height:700px) and (min-width:761px){.top{height:60px;min-height:60px}.journey{height:calc(100dvh - 60px)}.shell{padding-top:10px;padding-bottom:5px}.shell h1{font-size:36px}.subtitle{font-size:13px;margin-bottom:7px}.lead{font-size:14px;margin-bottom:6px}.nav{padding-top:6px;padding-bottom:8px}.cello{max-height:45vh}.caption{bottom:14px}.strip{display:none}.course{padding:9px}.fit,.pre,.trainer,.quote{margin-top:5px}.sessions article{min-height:33px}.price strong{font-size:40px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
 </style>
+
+<style id="design-sync-20260903">
+/* X Academy design sync — desktop + mobile recreation from supplied references */
+:root{
+  --bg:#050b11;
+  --p:#07131b;
+  --p2:#0a1821;
+  --t:#f3f6f7;
+  --m:#a3afb5;
+  --m2:#60717a;
+  --a:#08a6a7;
+  --a2:#11c1bf;
+  --l:rgba(178,205,213,.12);
+  --al:rgba(10,186,184,.42);
+}
+html,body,#root{background:#050b11}
+body{font-size:16px}
+.app{
+  background:
+    radial-gradient(circle at 15% 18%,rgba(7,127,134,.11),transparent 30%),
+    linear-gradient(180deg,#061018 0%,#050b11 100%);
+}
+.top{
+  height:102px;min-height:102px;padding:0 31px;gap:34px;
+  direction:ltr;background:rgba(4,11,17,.94);border-bottom:1px solid rgba(184,211,219,.11);
+}
+.brand{gap:13px;padding:0}
+.brand-x{width:47px;height:47px;border-radius:11px;font-size:29px;background:linear-gradient(145deg,#12bfc0,#079a9f)}
+.brand strong{font-size:22px;line-height:1;font-weight:800;letter-spacing:-.3px}
+.brand small{font-size:13px;line-height:1;margin-top:7px;color:#d0d6d8}
+.progress{direction:rtl;max-width:850px;width:min(850px,70vw);margin-left:auto;margin-right:18px}
+.progress button{gap:7px;padding:4px 0;color:#8b989e}
+.progress button:before{top:16px;right:calc(50% + 18px);width:calc(100% - 31px);background:rgba(185,205,211,.18)}
+.progress span{width:34px;height:34px;font-size:13px;border-color:rgba(187,210,218,.18);background:#0b151d}
+.progress small{font-size:13px;color:#a4adb2}
+.progress .active small{color:#f0f4f5}
+.progress .active span{background:linear-gradient(145deg,#13bcbd,#07979c);box-shadow:0 0 19px rgba(8,180,181,.42)}
+.journey{
+  direction:ltr;height:calc(100dvh - 102px);padding-bottom:105px;
+  grid-template-columns:minmax(390px,29.2%) minmax(0,70.8%);overflow:hidden;
+}
+.visual{
+  direction:rtl;margin:40px 0 31px 41px;padding:32px 28px;
+  border:1px solid rgba(154,196,205,.14);border-radius:21px;
+  background:radial-gradient(circle at 48% 33%,rgba(4,156,161,.19),transparent 37%),rgba(5,14,20,.38);
+  align-items:flex-start;justify-content:center;
+}
+.visual .grid{inset:28px 18px 46%;background-size:34px 34px;opacity:.9}
+.cello{width:min(70%,315px);max-height:360px;margin-top:73px;filter:drop-shadow(0 22px 28px rgba(0,0,0,.45)) drop-shadow(0 24px 24px rgba(4,156,161,.16))}
+.caption{
+  right:46px;left:46px;bottom:126px;padding:24px 25px 25px;text-align:center;
+  border-radius:18px;border-color:rgba(7,178,179,.30);background:rgba(5,17,24,.84);box-shadow:0 18px 40px rgba(0,0,0,.16)
+}
+.caption:after{content:"";display:block;height:1px;background:rgba(191,214,219,.13);margin:19px 0 18px}
+.caption span{font-size:13px;letter-spacing:.7px}
+.caption p{font-size:15px;line-height:1.75;margin:0;color:#dce2e4}
+.content{direction:rtl;background:transparent;overflow:hidden}
+.shell{
+  width:min(920px,94%);padding:35px 42px 18px;margin:0 auto;justify-content:flex-start;overflow:hidden;
+}
+.mobile-cello,.mobile-menu-icon,.mobile-progress{display:none}
+.meta{font-size:15px;margin:0 0 9px;justify-content:flex-start;gap:12px}
+.meta span:last-child{display:none}
+h1{font-size:clamp(48px,4.3vw,64px);line-height:1.05;letter-spacing:-2px;margin:0;font-weight:800}
+.subtitle{font-size:20px;line-height:1.65;margin:12px 0 17px;color:#aeb7bd}
+.lead{font-size:16px;line-height:1.85;margin:0 0 17px;color:#c6ced1}
+.position{min-height:72px;align-items:center;padding:12px 20px;margin:0 0 19px;border-radius:16px;background:rgba(7,27,36,.66)}
+.position span{font-size:16px;color:#10baba}
+.position span:before{content:"◇";font-size:18px;margin-left:10px}
+.position p{font-size:15px;line-height:1.75;color:#c1c9cd}
+.cards{gap:14px}
+.course{
+  min-height:176px;padding:17px 18px;border-radius:17px;grid-template-columns:58px 1fr 34px;gap:15px;align-items:start;
+  border-color:rgba(174,204,211,.13);background:rgba(8,19,27,.58);box-shadow:none
+}
+.course.selected{border-color:#0db7b5;background:linear-gradient(125deg,rgba(5,48,58,.88),rgba(7,25,33,.86));box-shadow:inset 0 0 35px rgba(7,176,174,.07),0 0 0 1px rgba(7,186,183,.05)}
+.ci{width:55px;height:55px;border-radius:13px;background:#08242c;color:#08c2c1;font-size:0;position:relative;overflow:hidden}
+.course[data-course="excel"] .ci:before{content:"";width:30px;height:30px;border-radius:4px;background:linear-gradient(90deg,#0fc3c2 47%,transparent 47% 53%,#0fc3c2 53%),linear-gradient(#0fc3c2 47%,transparent 47% 53%,#0fc3c2 53%);box-shadow:inset 0 0 0 2px rgba(0,41,48,.25)}
+.course[data-course="powerbi"] .ci:before{content:"";width:31px;height:31px;border:3px solid #0fc3c2;border-radius:3px;box-shadow:inset 7px 0 0 transparent;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.course[data-course="powerbi"] .ci:after{content:"";position:absolute;bottom:12px;left:14px;width:5px;height:15px;background:#0fc3c2;box-shadow:7px -6px 0 #0fc3c2,14px -1px 0 #0fc3c2}
+.course div{gap:7px}
+.course b{font-size:22px;line-height:1.25}
+.course small{font-size:14px;line-height:1.75;color:#bdc6ca}
+.course em{font-size:13px;line-height:1.75;color:#9aa7ac}
+.pick{width:31px;height:31px;border-radius:50%;padding:0;border:2px solid #81919a;font-size:0;background:transparent;align-self:start;margin-top:1px;position:relative}
+.course.selected .pick{border-color:#12c2c0}
+.course.selected .pick:after{content:"";position:absolute;inset:6px;border-radius:50%;background:#11c4c2;box-shadow:0 0 12px rgba(17,196,194,.5)}
+.helper-btn{
+  width:100%;height:63px;margin-top:17px;padding:0 22px;border:1px solid rgba(8,174,174,.26);border-radius:15px;
+  background:rgba(5,37,45,.42);font-size:17px;color:#12c0bf;text-align:center;position:relative
+}
+.helper-btn:before{content:"☼";position:absolute;left:22px;font-size:24px;color:#13c1bf}
+.helper-btn:after{content:"›";position:absolute;right:22px;font:400 37px/1 Arial;color:#15bdbc;transform:rotate(180deg)}
+.strip{
+  height:97px;margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid rgba(176,203,211,.14);border-radius:16px;overflow:hidden;background:rgba(7,18,26,.57)
+}
+.strip span{border:0;border-radius:0;padding:49px 14px 0;text-align:center;position:relative;font-size:14px;color:#c6ced1}
+.strip span+span{border-right:1px solid rgba(185,210,217,.12)}
+.strip span:before{position:absolute;top:17px;left:50%;transform:translateX(-50%);font-size:24px;color:#0fc0bf}
+.strip span:nth-child(1):before{content:"◉"}.strip span:nth-child(2):before{content:"◷"}.strip span:nth-child(3):before{content:"♢"}
+.nav{
+  position:fixed;left:0;right:0;bottom:0;height:105px;padding:17px 31px 18px;display:flex;align-items:center;direction:ltr;
+  background:rgba(5,12,18,.96);border-top:1px solid rgba(174,204,211,.11);z-index:35
+}
+.nav button{height:57px;min-height:57px;border-radius:13px;font-size:18px;padding:0 18px;display:flex;align-items:center;gap:12px}
+.nav .back{min-width:127px;background:rgba(255,255,255,.025);color:#d4dadd;justify-content:center}
+.nav .next{margin-left:auto;margin-right:0;min-width:300px;justify-content:space-between;background:linear-gradient(90deg,#10b6b6,#10a6aa);border-color:#10b8b8;color:white}
+.nav .next .nav-chevron{width:42px;height:42px;border-radius:10px;background:#09252e;display:grid;place-items:center;font:400 36px/1 Arial;color:#14c1c0}
+.nav .back .nav-chevron{font:400 31px/1 Arial;color:#b7c2c7}
+.fab{position:fixed;left:50%;bottom:32px;transform:translateX(-50%);z-index:40}
+.fab a{padding:0;background:none;box-shadow:none;color:#7f9097;font-size:12px;gap:9px;white-space:nowrap}
+.support-shield{font-size:20px;color:#8da0a6}
+
+/* Scale the remaining journey stages to the same visual language without changing their content. */
+.fit,.invest,.review,.fg{gap:14px}
+.box,.pre,.quote,.trainer,.tcard,.demo,.jargon,.faq,.price,.review article,.final,.sessions article,.outcomes article,.modules article{border-color:rgba(174,204,211,.14);background:rgba(7,19,27,.52)}
+.box{padding:17px 19px}.box span{font-size:14px}.box p{font-size:14px;line-height:1.75}
+.pre{padding:15px 18px;gap:10px}.pre b{font-size:14px}.pre span{font-size:13px}
+.quote{padding:15px 18px;font-size:15px;line-height:1.8}
+.trainer{padding:15px 18px}.trainer h3{font-size:20px}.trainer p{font-size:13px}.links a{font-size:12px;padding:8px 10px}
+.tcard{min-height:112px;padding:17px}.tcard span{font-size:12px}.tcard p{font-size:14px;line-height:1.7}
+.path{margin:12px 0}.path span{font-size:12px}.outcomes{gap:9px}.outcomes article{padding:12px 14px}.outcomes p{font-size:14px}.outcomes strong{font-size:12px}
+.demo{padding:14px}.demo b{font-size:15px}.demo p,.demo span{font-size:11px}
+.modules{gap:9px}.modules article{grid-template-columns:54px 1fr}.mn{font-size:12px;padding-top:15px}.mm{padding:12px 14px}.mm>b{font-size:15px}.mm>small,.why{font-size:11px}.whycopy{font-size:12px}
+.jargon{padding:14px}.jargon>b{font-size:12px}.jargon p{font-size:12px}
+.sum{gap:9px;margin-bottom:10px}.sum div{padding:11px}.sum strong{font-size:14px}.sum span{font-size:11px}
+.sessions{gap:8px}.sessions article{min-height:48px;padding:8px 10px}.sessions b{font-size:13px}.sessions small,.sessions time{font-size:10px}
+.faq{padding:11px 13px}.faq summary{font-size:13px}.faq p{font-size:12px}
+.price{padding:19px}.price small{font-size:13px}.price strong{font-size:54px}.price p{font-size:12px}.invest li{font-size:14px}
+.note{padding:12px 14px;font-size:13px}.review article{padding:12px}.review b{font-size:12px}.review p{font-size:13px}.final{padding:13px}.final span,.final p{font-size:12px}
+.fg label{font-size:13px}.fg input{height:49px;font-size:14px}.submit{height:51px;font-size:14px}.privacy{font-size:11px}
+
+@media (max-width: 900px){
+  html,body,#root{height:auto;min-height:100%;overflow:auto}
+  body{overflow-x:hidden;background:#050b11}
+  .app{height:auto;min-height:100dvh;overflow:visible;padding-bottom:0;background:radial-gradient(circle at 19% 12%,rgba(8,145,151,.14),transparent 23%),linear-gradient(180deg,#061018,#050b11 72%)}
+  .top{height:111px;min-height:111px;padding:0 30px;border-bottom:1px solid rgba(174,204,211,.12);position:relative;direction:ltr}
+  .top>.brand{display:flex}
+  .brand-x{width:58px;height:58px;border-radius:13px;font-size:34px}
+  .brand{gap:15px}
+  .brand strong{font-size:27px}
+  .brand small{font-size:16px;margin-top:7px}
+  .progress{display:none}
+  .mobile-menu-icon{display:grid;margin-left:auto;width:40px;gap:7px}
+  .mobile-menu-icon i{height:4px;border-radius:4px;background:#f5f3ef;display:block}
+  .mobile-progress{display:flex;position:absolute;right:46px;top:147px;z-index:30;width:22px;height:292px;flex-direction:column;align-items:center}
+  .mobile-progress-current{width:41px;height:41px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#11b9ba,#099da2);font-size:20px;color:white;box-shadow:0 0 0 1px rgba(22,197,196,.25)}
+  .mobile-progress i{display:block;width:4px;flex:1;margin-top:6px;border-radius:4px;background:linear-gradient(#0fb4b4 0 21%,#31414a 21% 60%,transparent 60%);position:relative}
+  .mobile-progress i:after{content:"";position:absolute;left:1px;top:61%;bottom:0;border-left:2px dashed #34454d}
+  .mobile-progress b{width:23px;height:23px;border-radius:50%;border:3px solid #34454d;background:#071018}
+  .journey{display:block;height:auto;min-height:0;padding:0;overflow:visible;direction:rtl}
+  .visual{display:none}
+  .content{display:flex;flex-direction:column;height:auto;overflow:visible;background:transparent}
+  .mobile-brand{display:none}
+  .shell{position:relative;width:100%;height:auto;overflow:visible;padding:43px 58px 31px 40px;display:block;margin:0}
+  .mobile-cello{display:block;position:absolute;left:42px;top:86px;width:265px;max-height:300px;object-fit:contain;filter:drop-shadow(0 20px 24px rgba(0,0,0,.34)) drop-shadow(0 23px 23px rgba(5,159,161,.14));z-index:0}
+  .meta,h1,.subtitle{position:relative;z-index:2;width:55%;margin-left:0;margin-right:auto;text-align:right}
+  .meta{font-size:18px;margin-bottom:28px;justify-content:flex-start}
+  h1{font-size:63px;line-height:1.07;letter-spacing:-2px;margin-bottom:26px;white-space:nowrap}
+  .subtitle{font-size:24px;line-height:1.8;margin-top:0;color:#b5bec4}
+  .stage{position:relative;z-index:3;margin-top:61px}
+  .lead{font-size:20px;line-height:2;text-align:right;margin:0 37px 31px 35px;color:#b8c1c6}
+  .position{min-height:106px;margin:0 0 35px;padding:18px 27px;display:block;text-align:right;border-radius:21px;background:rgba(7,23,31,.75)}
+  .position span{display:block;font-size:20px;margin-bottom:8px}
+  .position span:before{font-size:21px;margin-left:10px}
+  .position p{font-size:19px;line-height:1.75;color:#b9c2c7}
+  .cards{grid-template-columns:1fr;gap:23px}
+  .course{min-height:283px;padding:29px 31px 27px;border-radius:24px;grid-template-columns:95px 1fr 43px;gap:20px}
+  .ci{width:94px;height:94px;border-radius:18px}
+  .course[data-course="excel"] .ci:before{width:50px;height:50px}
+  .course[data-course="powerbi"] .ci:before{width:50px;height:50px;border-width:4px}
+  .course[data-course="powerbi"] .ci:after{bottom:21px;left:25px;width:8px;height:24px;box-shadow:12px -9px 0 #0fc3c2,24px -2px 0 #0fc3c2}
+  .course div{gap:12px;padding-top:2px}
+  .course b{font-size:29px;line-height:1.35}
+  .course small{font-size:18px;line-height:1.85}
+  .course em{font-size:17px;line-height:1.9;color:#aab5ba}
+  .pick{width:43px;height:43px;border-width:3px;margin-top:5px}
+  .course.selected .pick:after{inset:8px}
+  .helper-btn{height:88px;margin-top:28px;border-radius:20px;font-size:22px;padding:0 70px}
+  .helper-btn:before{left:30px;font-size:30px}.helper-btn:after{right:29px;font-size:44px}
+  .strip{height:151px;margin-top:25px;border-radius:21px}
+  .strip span{font-size:18px;padding:85px 9px 0;line-height:1.45}
+  .strip span:before{top:27px;font-size:35px}
+  .nav{position:relative;order:2;left:auto;right:auto;bottom:auto;height:auto;padding:31px 40px 12px;background:transparent;border-top:1px solid rgba(180,206,213,.10);display:block;direction:rtl}
+  .nav .next{width:100%;min-width:0;height:104px;border-radius:23px;margin:0;justify-content:center;position:relative;font-size:31px;background:linear-gradient(90deg,#0eb8b7,#11b4b7)}
+  .nav .next .nav-chevron{position:absolute;left:18px;width:76px;height:76px;border-radius:13px;font-size:54px;background:#09212a}
+  .nav .back{position:absolute;left:58px;top:47px;width:76px;min-width:76px;height:76px;z-index:2;border:0;background:transparent;padding:0;opacity:0;pointer-events:none}
+  .nav .back .back-label{display:none}
+  .nav .back .nav-chevron{display:none}
+  .fab{position:relative;order:3;left:auto;bottom:auto;transform:none;margin:4px 0 24px;display:flex;justify-content:center;z-index:2}
+  .fab a{font-size:17px;color:#778990;gap:11px}
+  .support-shield{font-size:27px}
+  .content>.nav{margin-top:0}
+  .content{padding-bottom:0}
+
+  .fit,.invest,.review,.fg{grid-template-columns:1fr;gap:14px}
+  .box{padding:18px}.box span{font-size:16px}.box p{font-size:16px}
+  .pre{grid-template-columns:1fr;padding:17px}.pre b{font-size:16px}.pre span{font-size:15px}
+  .quote{font-size:17px}.trainer{grid-template-columns:1fr}.trainer h3{font-size:21px}.trainer p{font-size:14px}
+  .transform{grid-template-columns:1fr;gap:10px}.transform>span{display:none}.tcard{min-height:120px}.tcard p{font-size:15px}
+  .path span{font-size:13px}.outcomes p{font-size:15px}
+  .modules article{grid-template-columns:50px 1fr}.mm>b{font-size:16px}.mm>small{font-size:12px}.why{font-size:12px}
+  .sum{grid-template-columns:1fr 1fr}.sum strong{font-size:15px}.sessions{grid-template-columns:1fr}.sessions article{min-height:60px}.sessions b{font-size:14px}.sessions small,.sessions time{font-size:11px}
+  .price strong{font-size:56px}.invest li{font-size:16px}.review p{font-size:14px}
+  .fg input{height:55px;font-size:15px}.submit{height:56px;font-size:16px}
+  .dialog{width:calc(100% - 28px);max-height:calc(100dvh - 28px);overflow:auto;padding:24px 18px}.dialog h2{font-size:27px}.dialog>p{font-size:13px}.q>b{font-size:14px}.opts{grid-template-columns:1fr}.opt{font-size:14px;min-height:48px}.rec p,.rec button{font-size:13px}
+}
+
+@media (max-width: 560px){
+  .top{height:82px;min-height:82px;padding:0 17px}
+  .brand-x{width:45px;height:45px;font-size:28px}.brand strong{font-size:21px}.brand small{font-size:12px;margin-top:5px}.brand{gap:10px}
+  .mobile-menu-icon{width:31px;gap:5px}.mobile-menu-icon i{height:3px}
+  .mobile-progress{right:20px;top:110px;height:208px;transform:scale(.82);transform-origin:top right}
+  .shell{padding:27px 28px 22px 20px}
+  .mobile-cello{left:18px;top:63px;width:142px;max-height:167px}
+  .meta,h1,.subtitle{width:57%}
+  .meta{font-size:12px;margin-bottom:17px}
+  h1{font-size:36px;letter-spacing:-1.2px;margin-bottom:15px}
+  .subtitle{font-size:14px;line-height:1.9}
+  .stage{margin-top:38px}
+  .lead{font-size:14px;line-height:1.9;margin:0 20px 20px 18px}
+  .position{min-height:72px;margin-bottom:22px;padding:12px 17px;border-radius:15px}.position span{font-size:14px;margin-bottom:4px}.position p{font-size:13px;line-height:1.7}
+  .cards{gap:15px}.course{min-height:190px;padding:20px;border-radius:18px;grid-template-columns:64px 1fr 31px;gap:13px}.ci{width:63px;height:63px;border-radius:13px}.course[data-course="excel"] .ci:before{width:35px;height:35px}.course[data-course="powerbi"] .ci:before{width:35px;height:35px}.course[data-course="powerbi"] .ci:after{bottom:14px;left:17px;width:6px;height:17px;box-shadow:8px -6px 0 #0fc3c2,16px -1px 0 #0fc3c2}.course b{font-size:20px}.course small{font-size:13px;line-height:1.8}.course em{font-size:12px;line-height:1.75}.pick{width:31px;height:31px;border-width:2px}.course.selected .pick:after{inset:6px}
+  .helper-btn{height:62px;margin-top:18px;border-radius:15px;font-size:15px;padding:0 48px}.helper-btn:before{left:19px;font-size:22px}.helper-btn:after{right:18px;font-size:34px}
+  .strip{height:104px;margin-top:18px;border-radius:15px}.strip span{font-size:12px;padding:58px 5px 0}.strip span:before{top:20px;font-size:25px}
+  .nav{padding:22px 19px 8px}.nav .next{height:72px;border-radius:16px;font-size:21px}.nav .next .nav-chevron{left:12px;width:53px;height:53px;border-radius:10px;font-size:39px}
+  .fab{margin:3px 0 18px}.fab a{font-size:12px}.support-shield{font-size:20px}
+}
+</style>
+
 </head>
 <body><div id="root"></div>
 <script>
@@ -27,7 +258,7 @@ const S={step:0,max:0,course:cookie(`xa_last_course`)||`excel`,courses:structure
 const fields=o=>Object.fromEntries(Object.entries(o).map(([k,v])=>[k,typeof v===`boolean`?{booleanValue:v}:typeof v===`number`?{integerValue:String(v)}:{stringValue:String(v)}])),post=async(col,o)=>{const h=new Headers();h.set(`Content-Type`,`application/json`);const r=await fetch(`https://firestore.googleapis.com/v1/projects/${P}/databases/(default)/documents/${col}?key=${K}`,{method:`POST`,headers:h,body:JSON.stringify({fields:fields(o)})});if(!r.ok)throw Error(r.status)},fv=v=>v?.stringValue??v?.booleanValue??(v?.integerValue?Number(v.integerValue):v?.arrayValue?(v.arrayValue.values||[]).map(fv):v?.mapValue?Object.fromEntries(Object.entries(v.mapValue.fields||{}).map(([k,x])=>[k,fv(x)])):null);
 async function settings(){try{const r=await fetch(`https://firestore.googleapis.com/v1/projects/${P}/databases/(default)/documents/siteSettings/courses?key=${K}`,{cache:`no-store`});if(!r.ok)return;const j=await r.json(),d=Object.fromEntries(Object.entries(j.fields||{}).map(([k,v])=>[k,fv(v)]));[`excel`,`powerbi`].forEach(k=>{if(!d[k])return;const x=d[k];if(Array.isArray(x.sessions))x.sessions=x.sessions.map(s=>Array.isArray(s)?s:[s.day,s.date,s.time]);S.courses[k]={...S.courses[k],...x}});if(S.courses[S.course]?.visible===false)S.course=Object.keys(S.courses).find(k=>S.courses[k].visible!==false)||S.course}catch{}}
 const track=(event,x={})=>post(`visitorEvents`,{timestamp:new Date().toISOString(),visitorId:vid,sessionId:sid,event,page:location.pathname||`/`,...x}).catch(()=>{});async function visit(){if(sessionStorage.getItem(`xacademy_visit_logged`))return;const device=/Mobi|Android|iPhone/i.test(navigator.userAgent)?`Mobile`:/iPad|Tablet/i.test(navigator.userAgent)?`Tablet`:`Desktop`;try{await post(`visitors`,{timestamp:new Date().toISOString(),visitorId:vid,sessionId:sid,returningVisitor:returning,page:location.pathname||`/`,url:location.href,referrer:document.referrer||`Direct`,utmSource:qs.get(`utm_source`)||cookie(`xa_utm_source`)||``,utmMedium:qs.get(`utm_medium`)||cookie(`xa_utm_medium`)||``,utmCampaign:qs.get(`utm_campaign`)||cookie(`xa_utm_campaign`)||``,language:navigator.language||``,device,platform:navigator.platform||``,userAgent:navigator.userAgent||``,screen:`${screen.width}×${screen.height}`,viewport:`${innerWidth}×${innerHeight}`});sessionStorage.setItem(`xacademy_visit_logged`,`1`)}catch{}}
-const brand=()=>`<button class="brand" data-a="secret" aria-label="X Academy by Cello"><span class="brand-x">X</span><span><strong>Academy</strong><small>by Cello</small></span></button>`,progress=()=>`<nav class="progress" aria-label="مراحل الرحلة">${steps.map((s,i)=>`<button data-step="${i}" class="${i===S.step?`active`:i<S.step?`done`:``}" ${i>S.max?`disabled`:``}><span>${i<S.step?`✓`:i+1}</span><small>${s[0]}</small></button>`).join(``)}</nav>`,nav=()=>S.step<7?`<div class="nav"><button class="back" data-a="back" ${S.step===0?`disabled`:``}>السابق</button><button class="next" data-a="next">${S.step===6?`الانتقال إلى التسجيل`:`متابعة الرحلة`} ←</button></div>`:``;
+const brand=()=>`<button class="brand" data-a="secret" aria-label="X Academy by Cello"><span class="brand-x">X</span><span><strong>Academy</strong><small>by Cello</small></span></button>`,progress=()=>`<nav class="progress" aria-label="مراحل الرحلة">${steps.map((s,i)=>`<button data-step="${i}" class="${i===S.step?`active`:i<S.step?`done`:``}" ${i>S.max?`disabled`:``}><span>${i<S.step?`✓`:i+1}</span><small>${s[0]}</small></button>`).join(``)}</nav>`,mobileProgress=()=>`<div class="mobile-progress" aria-hidden="true"><span class="mobile-progress-current">${S.step+1}</span><i></i><b></b></div>`,nav=()=>S.step<7?`<div class="nav"><button class="back" data-a="back" ${S.step===0?`disabled`:``}><span class="nav-chevron">‹</span><span class="back-label">السابق</span></button><button class="next" data-a="next"><span class="next-label">${S.step===6?`الانتقال إلى التسجيل`:`متابعة الرحلة`}</span><span class="nav-chevron">‹</span></button></div>`:``;
 function discover(){const list=Object.values(S.courses).filter(x=>x.visible!==false);if(!list.length)return`<p class="lead">لا توجد دورات متاحة للتسجيل حالياً.</p>`;return`<div class="position"><span>كيف نعلّم؟</span><p>نستخدم الأدوات لحل شغل حقيقي - مش لحفظ القوائم والأزرار.</p></div>${S.resume>0?`<button class="resume" data-a="resume"><span>أهلاً برجعتك</span><b>آخر مرة وصلت إلى: ${steps[S.resume][0]}</b><em>كمل من هناك ←</em></button>`:``}<p class="lead">اختر المسار الأقرب لهدفك. إذا كنت تعرف الأداة اختر مباشرة، وإذا لا Cello يساعدك بثلاثة أسئلة.</p><div class="cards">${list.map(x=>`<button class="course ${S.course===x.key?`selected`:``}" data-course="${x.key}"><span class="ci">${x.icon}</span><div><b>${x.name}</b><small>${x.promise}</small><em>${x.fit}</em></div><span class="pick">${S.course===x.key?`✓`:`اختيار`}</span></button>`).join(``)}</div><button class="helper-btn" data-a="helper">✦ مش متأكد؟ ساعدني أختار</button><div class="strip"><span>20 ساعة تدريب مباشر</span><span>10 جلسات تطبيقية</span><span>مشروع تطبيقي</span></div>`}
 function about(){const x=c();return`<p class="lead">${x.intro}</p><div class="fit"><div class="box"><span>مناسبة لك إذا</span><p>${x.fit}</p></div><div class="box"><span>مستوى الرحلة</span><p>${x.level}</p></div></div><div class="pre"><b>قبل ما تبدأ</b>${x.pre.map(v=>`<span>✓ ${v}</span>`).join(``)}</div><div class="quote">“لن تحفظ الأزرار فقط. ستعرف كيف ترى السؤال الصحيح داخل البيانات.”<small>- باسل غانم</small></div><article class="trainer"><div><span>مدرب البرنامج</span><h3>باسل غانم</h3><p>Senior Sales Analyst، مدرب ومستشار متخصص في Excel وPower BI وتحويل البيانات إلى قرارات عملية.</p></div><nav class="links"><a href="${WA}" target="_blank">اسأل المدرب</a><a href="https://www.linkedin.com/in/baselghanem/" target="_blank">LinkedIn</a><a href="https://baselghanem.github.io/Portfolio/" target="_blank">Portfolio</a></nav></article>`}
 function outcomes(){const x=c();return`<div class="transform"><div class="tcard"><span>قبل</span><p>${x.before}</p></div><div class="arrow">←</div><div class="tcard after"><span>بعد</span><p>${x.after}</p></div></div><div class="path">${x.path.map((v,i)=>`<span>${v}${i<x.path.length-1?`<i>←</i>`:``}</span>`).join(``)}</div><div class="outcomes">${x.out.map((v,i)=>`<article><strong>0${i+1}</strong><p>${v}</p></article>`).join(``)}</div><div class="demo"><div><span>تجربة مصغرة للفكرة</span><b>البيانات ليست الهدف. السؤال هو البداية.</b><p>نحدد السؤال أولاً ثم نبني التحليل الذي يجيب عنه.</p></div><div class="mini"><i>Sales</i><i>Growth</i><i>Target</i><b>?</b></div></div>`}
@@ -38,7 +269,7 @@ function review(){const x=c(),p=x.price??100,ri=(a,b,t=``)=>`<article><b>${a}</b
 function register(){const x=c();if(S.status===`done`)return`<div class="success"><h2>تم استلام طلب التسجيل</h2><p>وصلتنا بياناتك لدورة ${x.name}. سنتواصل معك عبر واتساب لتأكيد توفر المقعد وإتمام التسجيل.</p><a href="${WA}" target="_blank">تواصل معنا</a></div>`;return`<form class="form" id="reg"><p class="lead">آخر خطوة: أرسل بياناتك لدورة <b>${x.name}</b>. هذه الخطوة <strong>طلب تسجيل</strong> وليست تأكيداً نهائياً للمقعد.</p><div class="fg"><label>الاسم الكامل<input name="name" autocomplete="name" required minlength="3" placeholder="مثال: أحمد محمد"></label><label>البريد الإلكتروني<input name="email" type="email" autocomplete="email" required placeholder="name@example.com"></label><label>رقم واتساب<input name="phone" dir="ltr" autocomplete="tel" required minlength="7" placeholder="+962 7X XXX XXXX"></label><label>المدينة<input name="city" autocomplete="address-level2" placeholder="عمّان"></label></div>${S.status===`error`?`<p class="error">تعذر إرسال الطلب الآن. تحقق من الاتصال وحاول مجدداً.</p>`:``}<button class="submit" ${S.status===`saving`?`disabled`:``}>${S.status===`saving`?`جاري إرسال الطلب…`:`إرسال طلب التسجيل`}</button><small class="privacy">نستخدم بياناتك للتواصل معك بخصوص طلب التسجيل والدورة.</small></form>`}
 const views=[discover,about,outcomes,curriculum,schedule,investment,review,register];function helper(){const a=S.ans,r=recommend();const opt=(g,v,l)=>`<button class="opt ${a[g]===v?`sel`:``}" data-g="${g}" data-v="${v}">${l}</button>`;return`<div class="modal" data-a="close"><section class="dialog" onclick="event.stopPropagation()"><button class="close" data-a="close">×</button><span class="eyebrow">CELLO COURSE FINDER</span><h2>خلينا نختار بناءً على هدفك</h2><p>3 أسئلة فقط. النتيجة توصية مفسرة، مش اختبار.</p><div class="q"><b>1. أين تقضي أغلب شغلك اليوم؟</b><div class="opts">${opt(`work`,`excel`,`داخل Excel والجداول`)}${opt(`work`,`mixed`,`بين ملفات ومصادر متعددة`)}${opt(`work`,`new`,`لسا ببدأ`)}</div></div><div class="q"><b>2. ما النتيجة التي تريدها أكثر؟</b><div class="opts">${opt(`goal`,`automation`,`أسرّع الشغل والمعادلات`)}${opt(`goal`,`dashboard`,`أبني Dashboards تفاعلية`)}${opt(`goal`,`analysis`,`أحلل البيانات بشكل أقوى`)}</div></div><div class="q"><b>3. مستواك الحالي؟</b><div class="opts">${opt(`level`,`beginner`,`مبتدئ`)}${opt(`level`,`working`,`أستخدم الأدوات بالشغل`)}${opt(`level`,`advanced`,`مرتاح مع الأساسيات`)}</div></div>${r?`<div class="rec"><span>توصية Cello</span><h3>${S.courses[r.key].name}</h3><p>${r.reason}</p><button data-rec="${r.key}">اختيار هذا المسار</button></div>`:``}</section></div>`}
 function recommend(){const{work,goal,level}=S.ans;if(!work||!goal||!level)return null;let e=0,p=0;if(work===`excel`)e+=3;if(work===`mixed`)p+=3;if(work===`new`)e++;if(goal===`automation`)e+=3;if(goal===`dashboard`)p+=4;if(goal===`analysis`){e++;p++}if(level===`beginner`)e++;if(level===`advanced`)p++;const key=p>e?`powerbi`:`excel`;return{key,reason:key===`excel`?`لأن هدفك أقرب للشغل اليومي داخل الجداول وتسريع التحليل والمهام المتكررة.`:`لأن هدفك أقرب لربط المصادر وبناء Dashboards تفاعلية ونموذج بيانات مترابط.`}}
-function render(){if(S.courses[S.course]?.visible===false)S.course=Object.keys(S.courses).find(k=>S.courses[k].visible!==false)||S.course;const st=steps[S.step],x=c();root.innerHTML=`<div class="app">${S.loading?`<div class="loader"><div><img src="./assets/cello-flow/guide.webp" alt=""><span>Cello يجهّز رحلتك</span></div></div>`:``}<header class="top">${brand()}${progress()}</header><main class="journey"><section class="visual"><div class="grid"></div><img class="cello" src="./assets/cello-flow/${st[2]}" alt="Cello"><div class="caption"><span>CELLO SAYS</span><p>${st[3]}</p></div></section><section class="content"><div class="mobile-brand">${brand()}</div><div class="shell"><div class="meta"><span>المرحلة ${S.step+1} من 8</span><span>${st[0]}</span></div><h1>${st[1]}</h1><p class="subtitle">${S.step===0?`Excel أم Power BI؟ اختر بناءً على هدفك، وإذا لم تكن متأكداً سنساعدك.`:x.name}</p><div class="stage">${views[S.step]()}</div></div>${nav()}</section></main><div class="fab"><a href="${WA}" target="_blank" data-track="whatsapp_click">☎ <span>دعم واتساب</span></a></div>${S.helper?helper():``}</div>`;bind();setCookie(`xa_last_course`,S.course);setCookie(`xa_last_step`,String(S.step))}
+function render(){if(S.courses[S.course]?.visible===false)S.course=Object.keys(S.courses).find(k=>S.courses[k].visible!==false)||S.course;const st=steps[S.step],x=c();root.innerHTML=`<div class="app">${S.loading?`<div class="loader"><div><img src="./assets/cello-flow/guide.webp" alt=""><span>Cello يجهّز رحلتك</span></div></div>`:``}<header class="top">${brand()}${progress()}<span class="mobile-menu-icon" aria-hidden="true"><i></i><i></i><i></i></span></header>${mobileProgress()}<main class="journey"><section class="visual"><div class="grid"></div><img class="cello" src="./assets/cello-flow/${st[2]}" alt="Cello"><div class="caption"><span>CELLO SAYS</span><p>${st[3]}</p></div></section><section class="content"><div class="mobile-brand">${brand()}</div><div class="shell"><img class="mobile-cello" src="./assets/cello-flow/${st[2]}" alt=""><div class="meta"><span>المرحلة ${S.step+1} من 8</span><span>${st[0]}</span></div><h1>${st[1]}</h1><p class="subtitle">${S.step===0?`اختر بين Power BI أو Excel،<br>إذا لم تكن متأكداً سنساعدك.`:x.name}</p><div class="stage">${views[S.step]()}</div></div>${nav()}</section></main><div class="fab"><a href="${WA}" target="_blank" data-track="whatsapp_click"><span class="support-shield">◇</span><span>دعم واتساب متاح طوال رحلتك</span></a></div>${S.helper?helper():``}</div>`;bind();setCookie(`xa_last_course`,S.course);setCookie(`xa_last_step`,String(S.step))}
 function bind(){document.querySelectorAll(`[data-course]`).forEach(b=>b.onclick=()=>{S.course=b.dataset.course;track(`course_selected`,{course:S.course});render()});document.querySelectorAll(`[data-step]`).forEach(b=>b.onclick=()=>go(Number(b.dataset.step)));document.querySelectorAll(`[data-a=next]`).forEach(b=>b.onclick=next);document.querySelectorAll(`[data-a=back]`).forEach(b=>b.onclick=back);document.querySelectorAll(`[data-a=secret]`).forEach(b=>b.onclick=secret);document.querySelectorAll(`[data-a=resume]`).forEach(b=>b.onclick=()=>{S.max=Math.max(S.max,S.resume);go(S.resume)});document.querySelectorAll(`[data-a=helper]`).forEach(b=>b.onclick=()=>{S.helper=true;render()});document.querySelectorAll(`[data-a=close]`).forEach(b=>b.onclick=()=>{S.helper=false;render()});document.querySelectorAll(`[data-g]`).forEach(b=>b.onclick=()=>{S.ans[b.dataset.g]=b.dataset.v;render()});document.querySelectorAll(`[data-rec]`).forEach(b=>b.onclick=()=>{S.course=b.dataset.rec;S.helper=false;track(`course_helper_selected`,{course:S.course});render()});document.querySelectorAll(`.why`).forEach(b=>b.onclick=()=>b.closest(`article`).classList.toggle(`open`));document.querySelectorAll(`[data-track]`).forEach(a=>a.onclick=()=>track(a.dataset.track,{course:S.course,step:S.step}));document.getElementById(`reg`)?.addEventListener(`submit`,submit)}function go(i){if(i<0||i>S.max||i>7)return;S.step=i;track(`step_view`,{course:S.course,step:i,stepName:steps[i][0]});render()}function next(){if(S.step>=7)return;S.step++;S.max=Math.max(S.max,S.step);track(`step_view`,{course:S.course,step:S.step,stepName:steps[S.step][0]});render()}function back(){if(S.step<=0)return;S.step--;render()}function secret(){clearTimeout(S.timer);S.clicks++;if(S.clicks>=5){location.href=`./admin.html`;return}S.timer=setTimeout(()=>S.clicks=0,2500)}async function submit(e){e.preventDefault();const f=new FormData(e.currentTarget),d={name:String(f.get(`name`)||``).trim(),email:String(f.get(`email`)||``).trim(),phone:String(f.get(`phone`)||``).trim(),city:String(f.get(`city`)||``).trim()};if(d.name.length<3||!d.email.includes(`@`)||d.phone.length<7)return;S.status=`saving`;render();try{await post(`registrations`,{...d,course:S.course,totalScore:0,createdAt:new Date().toISOString(),source:`cello-typeform-2026`,visitorId:vid,sessionId:sid,utmSource:qs.get(`utm_source`)||cookie(`xa_utm_source`)||``,utmMedium:qs.get(`utm_medium`)||cookie(`xa_utm_medium`)||``,utmCampaign:qs.get(`utm_campaign`)||cookie(`xa_utm_campaign`)||``});track(`registration_completed`,{course:S.course});S.status=`done`}catch{S.status=`error`}render()}
 addEventListener(`keydown`,e=>{if(S.helper&&e.key===`Escape`){S.helper=false;render();return}if([`INPUT`,`TEXTAREA`,`SELECT`].includes(document.activeElement?.tagName))return;if(e.key===`ArrowLeft`&&S.step<7)next();if(e.key===`ArrowRight`&&S.step>0)back()});async function init(){render();await Promise.race([settings(),new Promise(r=>setTimeout(r,850))]);S.loading=false;render();visit();track(`step_view`,{course:S.course,step:0,stepName:steps[0][0]});setInterval(()=>{if(!document.hidden&&S.step!==7&&!S.helper)settings().then(render)},60000)}init();
 </script></body></html>
